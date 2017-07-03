@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<h2 ng-init="name='zhangsan';price=20">{{name+' 价格:'+price}}</h2>
+	<h1 ng-bind="500+234"></h1>
+	<h1 ng-bind="(!'zhangsan'*500-30+true)/(23.15*31%2)"></h1>
+</body>
+</html>

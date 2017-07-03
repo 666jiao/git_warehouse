@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<h1>{{count+'======'+min}}</h1>
+		<h1>{{i+'======'+m}}</h1>
+		<img ng-src="img/{{count}}.jpg" alt="">
+		<img ng-src="img/{{imgList[i]}}" alt="">
+	</div>
+
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",function($scope,$interval){
+	    	$scope.count=1;$scope.min=1;
+			var pro=$interval(function(){
+				$scope.count++;
+				$scope.min++;
+				if($scope.count>4) $scope.count=1;
+				if($scope.min>=10) $interval.cancel(pro);
+			},500);
+
+			$scope.i=0;$scope.m=1;
+			$scope.imgList=['1.jpg','2.jpg','3.jpg','4.jpg'];
+			var pro1=$interval(function(){
+				$scope.i++;
+				$scope.m++;
+				if($scope.i>3) $scope.i=0;
+				if($scope.m>=10) $interval.cancel(pro1);
+			},500);
+	    });
+
+	</script>
+</body>
+</html>

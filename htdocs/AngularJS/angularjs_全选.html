@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<table border="1" width="300">
+			<thead>
+				<tr>
+					<th>请选择</th>
+					<th>姓名</th>
+					<th>生日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="tmp in typ track by $index" id="tqe">
+					<td><input type="checkbox" ng-click="funcChange($index)" ng-model="tmp.isSelected"></td>
+					<td>{{tmp.name}}</td>
+					<td>{{tmp.bor}}</td>
+				</tr>
+			</tbody>
+		</table><hr>
+		<label for="inp">全选</label>
+		<input type="checkbox" id="inp" ng-click="changeAll()" ng-model="selectAll"><hr>
+		<button ng-click="checktatus()">查看</button>
+	</div>
+	
+	
+
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",['$scope',function($scope){
+			$scope.typ=[
+						{name:'小明',bor:'2016-03-16',isSelected:false},
+						{name:'小花',bor:'2016-03-16',isSelected:false},
+						{name:'小红',bor:'2016-03-16',isSelected:false},
+						{name:'小丽',bor:'2016-03-16',isSelected:false},
+						{name:'小芳',bor:'2016-03-16',isSelected:false},
+						{name:'小妍',bor:'2016-03-16',isSelected:false}];
+			$scope.funcChange=function(s){
+					// console.log($scope.typ[s].isSelected,s);
+					// if($scope.typ[s].isSelected==false) $scope.selectAll=false;
+				 //    else{
+				 //      var unChecked=document.querySelector("#tqe input:not(:checked)");
+				 //      if(!unChecked) $scope.selectAll=true;
+				 //      else $scope.selectAll=false;
+				 //    }
+				    for(var i=0;i<$scope.typ.length;i++){
+						if(!$scope.typ[i].isSelected) return $scope.selectAll=false;
+						$scope.selectAll=true;
+					}
+		    }
+			
+
+			$scope.changeAll=function(){
+				angular.forEach($scope.typ,function(value,key){
+			       console.log(key+'===='+$scope.typ[key].isSelected,$scope.typ.length);
+			       $scope.typ[key].isSelected=$scope.selectAll
+			    })
+			}
+
+			$scope.checktatus=function(){
+				var result = "";
+				angular.forEach($scope.typ,function(value,key){
+			       console.log(key+'===='+$scope.typ[key].isSelected,$scope.typ.length);
+			      if($scope.typ[key].isSelected){
+			        result+=($scope.typ[key].name+"选中了"+"\n")
+			      }
+			    })
+			    alert(result)
+			}
+
+			
+	    }]);
+
+	</script>
+</body>
+</html>

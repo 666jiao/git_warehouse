@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body,html{
+			height: 100%;
+		}
+		.blue{
+			background: #ddf;
+			color: #33a;
+		}
+		.pink{
+			background: #fdf;
+			color: #a3a;
+		}
+		.dark{
+			background: #333;
+			color: #eee;
+		}
+	</style>
+</head>
+<body>
+	<a href="index_1.html">返回</a>
+	<script>
+	var t=localStorage['sel'];
+	if(t){
+		document.body.className=t;
+	}
+
+
+	window.onstorage=function(){
+		var t=localStorage['sel'];
+		if(t){
+			document.body.className=t;
+		}
+	}
+	</script>
+</body>
+</html>

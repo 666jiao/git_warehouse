@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="#">
+		用户名:<input type="text" id="uname"/><hr>
+		  密码:<input type="password" id="upwd"/><hr>
+			   <input type="button" value="登录" id="btn"/>
+	</form>
+
+	<script>
+		btn.onclick=function(){
+			var u=uname.value;
+			var p=upwd.value;
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+				console.log(xhr.responseText);
+				if (xhr.readyState==4 && xhr.status==200){
+					if(xhr.responseText=='login-succ'){
+						alert('登录成功，欢迎回来！');
+					}else if(xhr.responseText=='login-err'){
+						alert('登陆失败！');
+					}
+				}
+			}
+			xhr.open('GET','login.php?uname='+u+'&upwd='+p,true);
+			xhr.send(null);
+		}
+	</script>
+</body>
+</html>

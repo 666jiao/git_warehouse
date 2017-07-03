@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			text-align: center;
+		}
+		svg{
+			background: #ddd;
+		}
+		div{
+			margin: 0 auto;
+			width: 800px;
+			height: 400px;
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<h1>使用Two.js(旋转平移)</h1>
+	<div id="box"></div>
+	<script src="js/two.js"></script>
+	<script>
+	var two=new Two({
+		width:800,
+		height:400,
+		type:Two.Types.svg
+	}).appendTo(box);
+
+	var r=two.makeRectangle(0,0,200,100);
+	var c=two.makeCircle(150,0,20);
+
+	var g=two.makeGroup(r,c);
+	g.translation.set(300,200);//旋转原点
+
+	// two.update()
+
+	var deg=0;
+	two.on('update',function(){
+		deg+=1;
+		g.rotation=deg*Math.PI/180;
+	}).play();
+	</script>
+</body>
+</html>

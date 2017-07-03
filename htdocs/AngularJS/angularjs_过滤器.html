@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<p>{{price}}</p>
+		<p>{{price | currency}}</p>
+		<p>{{price | currency:'￥'}}</p>
+		<p>{{nowDate | date:'yyyy-MM-dd'}}</p>
+
+
+		<ul>
+			<li ng-repeat="stu in stuList | orderBy:'age':true">
+				{{"按年龄降序排列===age is "+stu.age+" name is "+stu.name}}
+			</li>
+		</ul>
+
+		<p>{{name}}</p>
+		<p>{{"全大写："+name | uppercase}}</p>
+		<p>{{"全小写："+name | lowercase}}</p>
+
+		<ul>
+			<li ng-repeat="tmp in list | orderBy | limitTo:4">{{"升序排列然后显示前四位数："+tmp}}</li>
+		</ul>
+	</div>
+
+	
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",['$scope',function($scope){
+	       	$scope.price=1234;
+	       	$scope.nowDate=new Date();
+
+	       	$scope.stuList=[
+	       		{age:21,name:'张三'},
+	       		{age:19,name:'李四'},
+	       		{age:20,name:'王五'},
+	       		{age:17,name:'小明'},
+	       		{age:12,name:'小丽'},
+	       		{age:16,name:'小花'}
+	       	];
+
+	       	$scope.name="Math.random()"; 
+	       	$scope.list=[100,200,300,52,36,89,520,360];
+	    }]);
+
+	</script>
+</body>
+</html>

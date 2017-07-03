@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="http://127.0.0.1/My_project/hui_login.html">登录</a><hr>
+	<h1>用户注册</h1>
+	<form action="hui_reg.php" method="post" id="f1">
+		用户名
+		<input type="text" name="uname" id="uname"/>
+		<span id="unameTip" style="color:red"></span>6~8位数字和字母<br>
+		密码
+		<input type="password" name="upwd" id="upwd"/>
+		<span id="upwdTip" style="color:red"></span>3~6数字<br>
+		<input type="submit" value="注册"/>
+	</form>
+
+	
+
+
+	<script>
+		// /^[a-z0-9]{6,8}$/i
+		// /^[0-9]{3,6}$/
+		f1.onsubmit=function(){
+			var uReg=/^[a-z0-9]{6,8}$/i;
+			var pReg=/^[0-9]{3,6}$/;
+			if(!uReg.test(uname.value)){
+				unameTip.innerHTML='用户名格式不正确';
+				return false;
+			}
+
+			if(!pReg.test(upwd.value)){
+				upwdTip.innerHTML='密码格式不正确';
+				return false;
+			}
+
+			return true;
+		}
+	</script>
+</body>
+</html>

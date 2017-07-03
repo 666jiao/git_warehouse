@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<h1>angularjs第一个应用程序</h1>
+	<p>ng常用指令 ng-app</p>
+	<p>{{3+5}}</p>
+	<p>{{3+6>10?"你好":"我好"}}</p>
+	<p>{{(3+6>10||20)?"你好":"我好"}}</p>
+	<p>{{(3+6>10&&20)?"你好":"我好"}}</p>
+	<p>{{!20?"你好":"我好"}}</p>
+	<p>{{2+7?"你好":"我好"}}</p>
+
+	<h2 ng-init="name='zhangsan'">{{name}}</h2>
+
+	<ul ng-init="list=[100,200,300]">
+		<li>{{list[0]}}</li>
+		<li>{{list[1]}}</li>
+		<li>{{list[2]}}</li>
+	</ul>
+
+	<div ng-init="car={name:'WEY',price:20}">
+		<p>{{car.name+' 价格: '+car.price}}</p>
+	</div>
+
+	<table ng-init="typ=[
+						{name:'小明',age:20,sex:'未知',score:10},
+						{name:'小花',age:18,sex:'女',score:100},
+						{name:'小红',age:18,sex:'女',score:100},
+						{name:'小丽',age:18,sex:'女',score:100}
+						]" border="1">
+		<thead>
+			<tr>
+				<th>名字</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>分数</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{typ[0].name}}</td>
+				<td>{{typ[0].age}}</td>
+				<td>{{typ[0].sex}}</td>
+				<td>{{typ[0].score}}</td>
+			</tr>
+			<tr>
+				<td>{{typ[1].name}}</td>
+				<td>{{typ[1].age}}</td>
+				<td>{{typ[1].sex}}</td>
+				<td>{{typ[1].score}}</td>
+			</tr>
+			<tr>
+				<td>{{typ[2].name}}</td>
+				<td>{{typ[2].age}}</td>
+				<td>{{typ[2].sex}}</td>
+				<td>{{typ[2].score}}</td>
+			</tr>
+			<tr>
+				<td>{{typ[3].name}}</td>
+				<td>{{typ[3].age}}</td>
+				<td>{{typ[3].sex}}</td>
+				<td>{{typ[3].score}}</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

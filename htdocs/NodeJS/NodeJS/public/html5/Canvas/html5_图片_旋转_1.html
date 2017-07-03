@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+      body{
+            width:100%;
+            overflow:hidden;
+            margin:0;
+            background:hsla(0,0%,0%,0.5);
+        }
+	    canvas {
+	      background: rgba(221, 221, 221, 0.53);
+	    }
+	</style>
+</head>
+<body>
+  
+	<canvas width="1200" height="800" id="c2">您的浏览器不支持canvas绘图</canvas>
+
+<script>
+//1:获取画笔
+var ctx=c2.getContext("2d"),
+w=c2.width=window.innerWidth,                                
+h=c2.height=window.innerHeight;
+var p3=new Image();
+p3.src="video_audio/p3.png";
+p3.onload=function(){
+  var deg1=10;
+  var deg3=20;
+  setInterval(function(){
+    ctx.clearRect(-100,-50,w,h);
+    ctx.save();
+    ctx.translate(100,100);
+    ctx.rotate(deg1*Math.PI/180);
+    ctx.drawImage(p3,-100,-50);
+    ctx.rotate(-deg1*Math.PI/180);
+    ctx.translate(-100,-100);
+    ctx.restore();
+    deg1+=10;
+
+    ctx.drawImage(p3,500-200,100);
+
+    ctx.save();
+    ctx.translate(100,350);
+    ctx.rotate(deg3*Math.PI/180);
+    ctx.drawImage(p3,-100,-50);
+    ctx.rotate(-deg3*Math.PI/180);
+    ctx.translate(-100,-350);
+    ctx.restore();
+    deg3+=20;
+  },50);
+
+  
+};
+  
+
+
+function rc(){
+  var r=Math.floor(Math.random()*256);
+  var g=Math.floor(Math.random()*256);
+  var b=Math.floor(Math.random()*256);
+  return `rgb(${r},${g},${b})`;
+}
+</script>
+</body>
+</html>

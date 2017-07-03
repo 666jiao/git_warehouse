@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.container{
+			position: relative;
+		}
+		.ctrl img{
+			position:absolute;
+			width: 120px;
+			height: 120px;
+			z-index: 11;
+		}
+		#v2{
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<h1>H5新特性---视频播放</h1>
+	
+	
+	<div class="container">
+		<video controls="true" muted="muted" preload="auto" style="border: 1px solid red;" id="v2">
+			<source src="video_audio/birds.mp4">
+			<source src="video_audio/birds.ogg">
+			<source src="video_audio/birds.webm">
+			您的浏览器不支持video标签
+		</video>
+		<a href="#" class="ctrl" style="">
+			<img src="video_audio/play.png" alt="">
+		</a>
+		<img src="video_audio/1.jpg" alt="" style="position:absolute;z-index: 10;" id="ad">
+	</div>
+	
+	<script>
+	// v2.playbackRate=3.0; //三倍速度播放
+	// v2.volume=0; //音量调成0
+	// 
+	var container=document.querySelector('.container');
+	var ctrl=document.querySelector('.ctrl');
+	var ctrlImg=document.querySelector('.ctrl img');
+	container.onmouseenter=function(){
+		ctrl.style.display='block';
+	}
+	container.onmouseleave=function(){
+		ctrl.style.display='none';
+	}
+
+	ctrl.onclick=function(e){
+		e.preventDefault();
+		if(v2.paused){
+			v2.play();
+			ctrlImg.src="video_audio/pause.png";
+		}else{
+			v2.pause();
+			ctrlImg.src="video_audio/play.png";
+		}
+	}
+
+	v2.onplay=function(){
+		ad.style.display='none';
+	}
+	v2.onpause=function(){
+		ad.style.display="block";
+	}
+	</script>
+</body>
+</html>

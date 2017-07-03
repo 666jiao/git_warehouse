@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>获取定位的信息</h1>
+	<button id="btn1">读取定位信息</button>
+	<script>
+	console.log(window.navigator.geolocation);
+	btn1.onclick=function(){
+		window.navigator.geolocation.getCurrentPosition(succCB,errCB);
+
+	}
+	
+	function succCB(pos){
+		console.log("定位时间"+pos.timestamp);
+		console.log("定位纬度"+pos.coords.latitude);
+		console.log("定位经度"+pos.coords.longitude);
+		console.log("定位海拔"+pos.coords.altitude);
+		console.log("定位速度"+pos.coords.speed);
+	}
+
+	function errCB(err){
+		console.log("获取定位数据失败");
+		console.log(err.code);
+		console.log(err.message);
+	}
+	</script>
+</body>
+</html>

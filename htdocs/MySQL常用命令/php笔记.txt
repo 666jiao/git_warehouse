@@ -1,0 +1,1 @@
+echo readfile("webdictionary.txt"); 读取一个文本文件内容

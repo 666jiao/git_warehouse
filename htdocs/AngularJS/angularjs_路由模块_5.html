@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/test.css"/>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-route.js"></script>
+	<script src="js/angular-animate.js"></script>
+</head>
+<body ng-controller="bodyCtrl">
+	<!-- <div ng-controller="myCtrl"></div> -->
+
+	<ng-view class="page"></ng-view>
+	<script>
+	    var app=angular.module("myApp",['ng','ngRoute','ngAnimate']);
+	    // 配置路由词典
+	    app.config(function($routeProvider){
+	    	$routeProvider
+	    	.when('/check',{
+    			templateUrl:'tpl/check.html'
+	    	}).when('/pay/:id/:name',{
+	    		controller:'payCtrl',
+	    		templateUrl:'tpl/pay.html'
+	    	}).when('/send/:i',{	
+	    		controller:'sendCtrl',
+	    		templateUrl:'tpl/send.html'
+	    	}).otherwise({redirectTo:'/check'})
+	    })
+
+	    app.controller('bodyCtrl',['$scope','$location','$routeParams',function($scope,$location,$routeParams){
+	    	$scope.recAgre=$routeParams.index
+	    	$scope.jump=function(routeUrl){
+	    		$location.path(routeUrl)
+	    	}
+	    }])
+
+	    app.controller('payCtrl',['$scope','$routeParams',function($scope,$routeParams){
+	    	$scope.recAgre=$routeParams.id;
+	    	$scope.soc=$routeParams.name;
+	    }])
+
+	    app.controller('sendCtrl',['$scope','$routeParams',function($scope,$routeParams){
+	    	$scope.gre=$routeParams.i
+	    }])
+
+		for(var i=0,s=Math.floor(Math.random()*100);i<s;i++) console.log(i);
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="#" id="fom">
+		<output>用户姓名:</output>
+		<input type="text" id="inp"><br>
+		<output style="vertical-align:top;margin-top:10px;display: inline-block;">留言内容:</output>
+		<textarea cols="50" rows="10" style="margin-top:10px;" id="tae"></textarea>
+		<div>
+			<input type="submit" value="提交" id="btn">
+		</div>
+	</form>
+
+
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+	$('#btn').click(function(){
+		var i=inp.value,t=tae.value;
+		$.ajax({
+			type:"POST",
+			url:"/addmsg",
+			data:{i:i,t:t},
+			success:function(data){
+				if(data.code>0){
+					alert("添加成功，编号为："+data.mid);
+				}
+				console.log(data.code,data.mid);
+			}
+		})
+	})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+ </head>
+  <body>
+  <h1>jQ给定函数跨域访问方式</h1>
+  <script src="jquery-1.10.2.min.js"></script>
+  <script>
+	$.ajax({
+	  url:'http://localhost/ajax_jsonp/youhua_ban/06_jsonp.php',
+	  dataType:"jsonp"
+	});
+    
+    function doResponse(data){
+		 for(var i in data) $(document.body).append("<hr/>"+i+" : "+data[i]);
+    }
+  </script>
+ </body>
+</html>

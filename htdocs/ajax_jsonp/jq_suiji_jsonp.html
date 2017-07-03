@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>jq随机函数跨域访问方式</h1>
+	<script type="text/javascript" src="jquery-1.7.2.js"></script>
+	<script type="text/javascript"> 
+	//注册页面加载完成回调函数（匿名） 
+	 $(document).ready(function(){ 
+	 	//使用getJSON方法调用跨域脚本；注册匿名回调函数 
+	 	$.getJSON("http://localhost/ajax_jsonp/jq_jsonp.php?callback=?", function(data){
+			for(var i in data){
+				$(document.body).append("<hr/>"+data[i]);
+	 			console.log(data[i]);
+			}
+			$(document.body).append("<br/><br/><br/><br/>");
+	 	}); 
+	 }); 
+
+//============================================================
+
+	// $(document).ready(function(){
+	// 	$.ajax({
+	// 		url:"http://localhost/ajax_jsonp/jq_jsonp.php", 
+	// 		dataType:'jsonp', 
+	// 		success:function(data,s){
+	// 			for(var i in data){
+	// 				$(document.body).append("<hr/>" + data[i]);
+	// 				console.log(data[i],s);
+	// 			}
+	// 		}
+	// 	}); 
+	// }); 
+
+//=================================================================
+
+
+
+	// function addScriptTag(src){
+ //      var script = document.createElement('script');
+ //         script.setAttribute("type","text/javascript");
+ //         script.src = src;
+ //         document.body.appendChild(script);
+ //    }
+     
+ //     window.onload = function(){
+ //         addScriptTag("jquery-1.7.2.js");
+ //     }
+	</script>
+</body>
+</html>

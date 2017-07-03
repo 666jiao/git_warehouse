@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<h1>angularjs第一个应用程序</h1>
+	<p>ng常用指令 ng-app</p>
+	<p>{{3+5}}</p>
+	<p>{{3+6>10?"你好":"我好"}}</p>
+	<p>{{(3+6>10||20)?"你好":"我好"}}</p>
+	<p>{{(3+6>10&&20)?"你好":"我好"}}</p>
+	<p>{{!20?"你好":"我好"}}</p>
+	<p>{{2+7?"你好":"我好"}}</p>
+
+	<h2 ng-init="name='zhangsan'">{{name}}</h2>
+
+	<ul ng-init="list=[100,200,300,200]">
+		<li ng-repeat="tmp in list track by $index">{{tmp}}</li>
+	</ul>
+
+	<div ng-init="car={name:'WEY',price:20}">
+		<p>{{car.name+' 价格: '+car.price}}</p>
+	</div>
+
+	<table ng-init="typ=[{name:'小明',age:20,sex:'未知',score:10},
+						{name:'小花',age:18,sex:'女',score:100},
+						{name:'小红',age:18,sex:'女',score:100},
+						{name:'小丽',age:18,sex:'女',score:100}]" border="1" width="300">
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>名字</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>分数</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tmp in typ track by $index">
+				<td>{{$index+1}}</td>
+				<td>{{tmp.name}}</td>
+				<td>{{tmp.age}}</td>
+				<td>{{tmp.sex}}</td>
+				<td>{{tmp.score}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div ng-init="friends = [{name:'John', age:25}, {name:'Mary', age:28}]">
+	    I have {{friends.length}} friends. They are:
+	    <ul>
+	        <li ng-repeat="friend in friends">
+	            [{{$index + 1}}] {{friend.name}} who is {{friend.age}} years old.
+	        </li>
+	    </ul>
+	</div>
+
+<div ng-class="{errorClass: isError, warningClass: isWarning, okClass: !isError && !isWarning}">...</div>
+
+<div ng-controller="contro">
+	<input type="text" ng-model="keyword">
+	<p>{{keyword}}</p>
+</div>
+	
+<script>
+	var app=angular.module("myApp",['ng']);
+	app.controller("contro",['$scope',function($scope){
+	   $scope.keyword="小明";
+	   $scope.$watch('keyword',function(newValue,oldValue){
+	   		console.log($scope.keyword,arguments)
+	   });
+	}]);
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="#">
+		<p>用户名：<input type="text" id="username"></p>
+		<p>密  码：<input type="password" id="password"></p>
+		<input type="submit" value="登录" onclick="submitn()">
+	</form>
+	<script>
+		function setCookie(key,value,e){
+			document.cookie=encodeURIComponent(key)+'='+encodeURIComponent(value)+';expires='+e;
+			console.log(document.cookie)
+		}
+		function dateCookie(expires){
+			var seda=new Date()
+			seda.setDate(seda.getDate()+expires)
+			return seda
+		}
+		function getCookie(name){
+			var arrStr=document.cookie.split('; ')
+			for(var i=0;i<arrStr.length;i++){
+				var arr=arrStr[i].split('=')
+				if(arr[0]==name){
+					return decodeURIComponent(arr[1])
+				}
+			}
+			return ''
+		}
+		var user=document.getElementById('username');
+		var pass=document.getElementById('password');
+		function submitn(){
+			setCookie('user',user.value,dateCookie(-10))
+			setCookie('pass',pass.value,dateCookie(-10))
+		}
+		user.value=getCookie('user');
+		pass.value=getCookie('pass')
+	</script>	
+</body>
+</html>

@@ -1,0 +1,33 @@
+数据类型
+int 整型
+bigint 大型整型
+varchar(n) 含有n个字符的字符串
+double(n,m) 总长度n位其中包括m位小数的浮点数
+declmal(n,m) 总长度n位其中包括m位小数的高精度浮点数
+datetime 时间日期
+date 日期
+
+insert into 表名 values(数据类型,'数据类型'); 向表中增加一条记录
+
+delete from 表名 where 条件1 and 条件2 and ... 从表中删除一条记录
+
+update 表名 set 修改内容 where 修改条件1 and 修改条件2 修改一条表记录
+
+select 查询内容 from 表名 where 查询条件1 and 查询条件2 查询表记录
+
+select * from 表名 order by price; 按价格升序排列
+select * from 表名 order by price desc; 按价格降序排列
+
+select max(price),min(price),avg(price),count(price),sum(price) from 表名; 查询价格最大值 最小值 平均值 总个数 总和
+select now(); 查询当前时间
+
+多表查询
+select p.id,p.name,t.name from product p,product_type t where p.id=t.id;
+
+
+分页查询
+select * from 表名 limit 0,3; 查询表中前三行
+
+delete from product limit 10;删除第10行之前的所有数据 多行删除
+
+select * from product where piace=(select max(piace) from product);

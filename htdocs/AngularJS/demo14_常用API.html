@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="js/angular.js"></script>
+</head>
+<body>
+<div ng-controller="myCtrl">
+    <button ng-click="handleClick()">clickMe</button>
+</div>
+
+<script>
+    var app = angular.module("myApp", ['ng']);
+        app.factory('$show',function(){
+            return {
+                show:function(){
+                    alert("hello $injector")
+                }
+            }
+        });
+   // app.controller('myCtrl',['$scope','$show',function($scope,$show){
+   //     $scope.handleClick=function(){
+   //         $show.show();
+   //     }
+   // }])
+
+    var injector=angular.injector(['myApp','ng']);
+    var isExited=injector.has('$show');
+    console.log(isExited);
+    if(isExited) injector.get('$show').show();
+
+    app.controller('myCtrl',['$scope','$injector', function($scope,$injector){
+        $scope.handleClick=function(){
+            var s=$injector.has('$show');
+            console.log(s);
+            if(s){
+                var d=$injector.get('$show');
+                console.log(d)
+                d.show();
+            }
+        }
+
+    }])
+</script>
+</body>
+</html>

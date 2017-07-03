@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="#">
+		
+		<datalist id="list3">
+			<option>京酱肉丝</option>
+			<option>鱼香肉丝</option>
+			<option>青椒肉丝</option>
+			<option>切丁肉丝</option>
+		</datalist>
+		<input type="text" name="lunch" list="list3"><br>
+
+		网络连接中：<progress></progress><br>
+		下载进度中：<progress value="0.2"></progress><br>
+		下载进度中：<progress value="0.3"></progress><br>
+		下载进度中：<progress value="0.4"></progress><br>
+		下载进度中：<progress value="0.5"></progress><br>
+		下载进度中：<progress value="0.6"></progress><br>
+		下载进度中：<progress value="0.7"></progress><br>
+		下载进度中：<progress value="0.8"></progress><br>
+		下载进度中：<progress value="0.9"></progress><br>
+		<progress value="0" id="pro"></progress><br>
+	</form>
+	<script>
+			var timer=setInterval(function(){
+				var v=pro.value;
+				v+=0.1;
+				pro.value=v;
+				
+				if(pro.value>=1){
+
+					clearInterval(timer);
+					// debugger;	
+					alert("下载完成");
+				}
+			},500);
+		
+		
+	</script>
+</body>
+</html>

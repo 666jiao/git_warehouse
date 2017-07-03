@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>H5的新特性--SVG绘图矩形</title>
+	<style>
+		 /*body{
+            width:100%;
+            overflow:hidden;
+            margin:0;
+            background: hsla(120,80%,90%,0.5);
+        }*/
+		body{
+			text-align: center;
+		}
+		svg{
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<h1>H5的新特性--SVG绘图矩形</h1>
+	<svg width="800" height="600" id="s1"></svg>
+	
+	<script>
+		for(var i=0;i<=50;i++){
+			var circle=document.createElementNS("http://www.w3.org/2000/svg","circle");
+			circle.setAttribute("r",rn(10,80));
+			circle.setAttribute("cx",rn(0,800));
+			circle.setAttribute("cy",rn(0,600));
+			circle.setAttribute("fill",rc(0,255));
+			circle.setAttribute("fill-opacity",Math.random());
+			s1.appendChild(circle);
+			circle.onclick=function(){
+				var self=this;
+				self.onclick=null;
+				var t=setInterval(function(){
+					var r=self.getAttribute("r");
+					r*=1.05;
+					self.setAttribute("r",r);
+					var p=self.getAttribute("fill-opacity");
+					p*=0.9;
+					self.setAttribute("fill-opacity",p);
+					if(p<0.001){
+						clearInterval(t);
+						s1.removeChild(self);
+					}
+				},10)
+			}
+		}
+
+		function rn(min,max){
+			var n=Math.floor(Math.random()*(max-min)+min);
+			return n;
+		}
+
+		function rc(min,max){
+		  var r=rn(min,max);
+		  var g=rn(min,max);
+		  var b=rn(min,max);
+		  return `rgb(${r},${g},${b})`;
+		}
+
+		// function rc(){
+		//   var r=Math.floor(Math.random()*256);
+		//   var g=Math.floor(Math.random()*256);
+		//   var b=Math.floor(Math.random()*256);
+		//   var a=Math.random();
+		//   return `rgba(${r},${g},${b},${a})`;
+		// }
+	</script>
+
+</body>
+</html>

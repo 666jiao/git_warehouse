@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>ng过滤器</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>名字</th>
+					<th>年龄</th>
+					<th>性别</th>
+					<th>分数</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="stu in stuList | orderBy:'score':true | limitTo:4">
+					<td>{{"按降序排列然后显示前四位===="+stu.name}}</td>
+					<td>{{stu.age}}</td>
+					<td>{{stu.sex}}</td>
+					<td>{{stu.score}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",function($scope){
+	       	$scope.price=1234;
+	       	$scope.nowDate=new Date();
+
+	       	$scope.stuList=[
+	       		{sex:'男',score:89,age:21,name:'小明'},
+	       		{sex:'男',score:78,age:19,name:'小红'},
+	       		{sex:'男',score:96,age:20,name:'小花'},
+	       		{sex:'男',score:80,age:21,name:'小丽'},
+	       		{sex:'男',score:72,age:19,name:'小凯'},
+	       		{sex:'男',score:91,age:20,name:'小宇'},
+	       	];
+	    });
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>欢迎访问我们网站</h1>
+	<script>
+	function setCookie(key,value,e){
+		document.cookie=encodeURIComponent(key)+'='+encodeURIComponent(value)+';expires='+e;
+		console.log(document.cookie)
+	}
+	function dateCookie(expires){
+		var seda=new Date()
+		seda.setDate(seda.getDate()+expires)
+		return seda
+	}
+
+	function getCookie(name){
+		var arrStr=document.cookie.split('; ')
+		for(var i=0;i<arrStr.length;i++){
+			var arr=arrStr[i].split('=')
+			if(arr[0]==name){
+				return decodeURIComponent(arr[1])
+			}
+		}
+		return ''
+	}
+	
+	function loadPage(){
+		if(getCookie('user')==''){
+			window.open('测试页面.html','','height=300,width=200,top=100,left=100')
+			setCookie('user','测试页面.html',dateCookie(7))
+		}
+	}
+	loadPage()
+	</script>
+</body>
+</html>

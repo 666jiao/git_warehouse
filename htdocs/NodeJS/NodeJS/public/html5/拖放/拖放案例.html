@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style type="text/css">
+#div1,#div2{
+	float:left;
+	width:400px;
+	height:400px;
+	margin:10px;
+	padding:10px;
+	border:1px solid #aaaaaa;
+}
+</style>
+
+</head>
+<body>
+
+<div id="div1">
+	<p draggable="true" id="drag2">拖放</p>
+</div>
+<div id="div2"></div>
+
+<p id="demo">p 元素</p>
+
+<script type="text/javascript">
+div1.ondragover=function(ev){
+	ev.preventDefault();
+}
+div1.ondrop=function(ev){
+	ev.preventDefault();
+	var data=ev.dataTransfer.getData("Text");
+	ev.target.appendChild(document.getElementById(data));
+	document.getElementById("demo").innerHTML = " p 元素已被拖动";
+	console.log(data);
+}
+
+
+// 拖动开始
+drag2.ondragstart=function(ev){
+	ev.dataTransfer.setData("Text",ev.target.id);
+	document.getElementById("demo").innerHTML = "开始拖动 p 元素";
+}
+// 拖动中
+drag2.ondrag=function(ev){
+    document.getElementById("demo").innerHTML = " p 元素正在拖动";
+}
+// 拖动结束
+drag2.ondragend=function(){
+    document.getElementById("demo").innerHTML = "完成 p 元素的拖动。";
+}
+
+div2.ondragover=function(ev){
+	ev.preventDefault();
+}
+div2.ondrop=function(ev){
+	ev.preventDefault();
+	var data=ev.dataTransfer.getData("Text");
+	ev.target.appendChild(document.getElementById(data));
+	document.getElementById("demo").innerHTML = " p 元素已被拖动";
+	console.log(data);
+}
+
+
+
+// ===========================================================================
+
+
+function allowDrop(ev){
+	ev.preventDefault();
+}
+
+function drag(ev){
+	ev.dataTransfer.setData("Text",ev.target.id);
+	document.getElementById("demo").innerHTML = "开始拖动 p 元素";
+}
+
+function drop(ev){
+	ev.preventDefault();
+	var data=ev.dataTransfer.getData("Text");
+	ev.target.appendChild(document.getElementById(data));
+	document.getElementById("demo").innerHTML = " p 元素已被拖动";
+	console.log(data);
+}
+
+function dragging(ev){
+    document.getElementById("demo").innerHTML = " p 元素正在拖动";
+}
+
+function dragEnd(event) {
+    document.getElementById("demo").innerHTML = "完成 p 元素的拖动。";
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+<!-- <html>
+<head>
+<title>在页面中显示十字光标</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<div id="divleft"></div>
+<div id="divtop"></div>
+<script language="JavaScript">
+function move(){
+	if(event.clientX<document.body.clientWidth-2)
+		divtop.style.pixelLeft=document.body.scrollLeft+event.clientX+1;
+	else divtop.style.pixelLeft=document.body.clientWidth-2;
+	if(event.clientY<document.body.clientHeight-2)
+		divleft.style.pixelTop=document.body.scrollTop+event.clientY+1;
+}
+function setstyle(n){
+	var name=eval(n).style;
+	name.position="absolute";
+	name.left="0";
+	name.top="0";
+	if(n=="divleft"){
+		name.height="2px";
+		name.width=document.body.clientWidth;
+	}
+	if(n=="divtop"){
+		name.width="2px";
+		name.height=document.body.clientHeight;
+	}
+	name.backgroundColor="#6699cc";
+	name.fontSize="0px";
+}
+setstyle("divleft");
+setstyle("divtop");
+document.onmousemove=move;
+</script>
+</body>
+</html> -->

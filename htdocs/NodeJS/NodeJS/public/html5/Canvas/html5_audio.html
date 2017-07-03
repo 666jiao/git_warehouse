@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<h1>H5新特性---音频播放</h1>
+
+	<audio controls id="aud">
+		<source src="video_audio/1.mp3" />
+		<source src="video_audio/1.wav" />
+	</audio>
+	<input type="checkbox" id="inp">
+
+
+	<!-- autoplay  是否自动播放 -->
+	<!-- controls  是否显示控件 -->
+	<!-- loop 是否循环播放 -->
+	<!-- muted  是否静音 -->
+	<!-- preload  音频预加载策略
+		auto
+		metadate
+		none -->
+	<!-- js属性
+	currentTime -->
+
+	<script>
+	inp.onchange=function(){
+		var timer=null,s=this;
+		if(this.checked){
+			s.disabled=true;
+			// for(var i=0;i<1;i+=0.1) aud.volume=i;
+			aud.volume=0;
+			aud.play();
+			timer=setInterval(function(){
+				aud.volume+=0.1;
+				console.log(aud.volume.toFixed(1));
+				if(aud.volume.toFixed(1)>=1){
+					clearInterval(timer);
+					timer=null;
+					s.disabled=false;
+				}
+			},100);
+		}else{
+			s.disabled=true;
+			// for(var i=1;i>0;i-=0.1) aud.volume=i;
+			timer=setInterval(function(){
+				aud.volume-=0.1;
+				console.log(aud.volume.toFixed(1));
+				if(aud.volume.toFixed(1)<=0){
+					clearInterval(timer);
+					timer=null;
+					aud.pause();
+					s.disabled=false;
+				}
+			},100)
+		}
+		console.log(this.checked,aud.volume)
+	}
+	</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="settingsModule">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="settingCtrl">
+		<button ng-click="goToPerson()">跳站个人中心</button>
+	</div>
+
+	<script>
+	    var myUser=angular.module("userModule",['ng']);
+	    myUser.service('$login',function(){
+	    	this.checkIsLogin=function(){
+	    		return Math.random()>0.5;
+	    	}
+	    });
+	    var settingsModule=angular.module('settingsModule',['userModule']);
+	    settingsModule.controller('settingCtrl',['$scope','$login',function($scope,$login){
+	    	$scope.goToPerson=function(){
+	    		if($login.checkIsLogin()){
+	    			alert("登录完成");
+	    		}else{
+	    			alert("qing登录");
+	    		}
+	    	}
+	    }]);
+	    // app.controller("contro",['$scope',function($scope){}]);
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<button ng-click="whetherLogin()">用户中心</button>
+		<h1 ng-show="loginStatus">已登录</h1>
+	</div>
+
+	<script>
+	    var app=angular.module("myapp",['ng']);
+
+	    app.factory('$userLogin',function(){
+	    	return {
+	    		checkUserLogin:function(){
+	    			return Math.random()>0.5
+	    		}
+	    	}
+	    })
+
+
+	    app.controller("contro",function($scope,$interval,$http,$userLogin){
+
+	    	$scope.whetherLogin=function(){
+	    		$scope.loginStatus=$userLogin.checkUserLogin();
+	    	}
+
+
+
+	    	$scope.getData=function(){
+
+	    		$http({
+	    			method:'get',
+	    			url:'data/test.json'
+	    		}).success(function(data){
+	    			// console.log(data)
+	    			$scope.dishList=data;
+	    			angular.forEach(data,function(value,key){
+	    				console.log(value.age,key)
+	    			})
+	    		}).error(function(){
+	    			console.log(arguments)
+	    		})
+	    	}
+	    });
+
+	</script>
+</body>
+</html>

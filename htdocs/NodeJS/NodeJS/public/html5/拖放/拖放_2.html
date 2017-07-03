@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			position: relative;
+			margin: 0;
+		}
+		body:before{
+			content: '';
+			display: table;
+		}
+	</style>
+</head>
+<body>
+	<h1>拖动的源对象可能触发的事件</h1>
+	
+	<img src="trash.png" alt="" id="trash">
+	<hr>
+	<div id="box">
+		<img src="p3.png" alt="" id="p3">
+		<img src="p4.png" alt="" id="p4">
+		<img src="p5.png" alt="" id="p5">
+	</div>
+	
+	<script>
+	 var planeId=null;
+	 var list=document.querySelectorAll("#box img");
+	 for(var i=0;i<list.length;i++){
+	 	var plan=list[i];
+	 	plan.ondragstart=function(){
+	 		planeId=this.id;
+	 	}
+	 	plan.ondrag=function(){}
+	 	plan.onragend=function(){}
+	 }
+	 trash.ondragenter=function(){}
+	 trash.ondragover=function(e){
+	 	e.preventDefault();
+	 }
+	 trash.ondragleave=function(){}
+	 trash.ondrop=function(){
+	 	var img=document.getElementById(planeId);
+	 	console.log(img)
+	 	box.removeChild(img);
+	 }
+	</script>
+</body>
+</html>

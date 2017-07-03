@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="jquery-1.7.2.js"></script>
+	<script>
+	$.ajax({
+			type:"GET",
+			 url:"ajax.php",
+			data:"id=10",
+	     success:function(data,s){
+			 	console.log(data,s);
+		 },
+		   error:function(){
+		   		console.log(1);
+		   },
+	    complete:function(data,s){
+	    		console.log(data.responseText,s,data.readyState,data.statusText,data.status);
+	    }
+	})
+	</script>
+</body>
+</html>

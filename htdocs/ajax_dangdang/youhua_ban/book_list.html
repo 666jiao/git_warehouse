@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>ajax 显示图书列表</h1>
+   <table border="1" width='100%' style='border-collapse:collapse;text-align:center;'>
+    <thead>
+       <tr style="line-height:50px; background:#0f0;">
+			<th>编号</th>
+			<th>书名</th>
+			<th>图片</th>
+			<th>价格</th>
+			<th>发布时间</th>
+			<th>操作</th>
+		</tr>
+    </thead>
+    <tbody id="tb1"></tbody>
+   </table>
+
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+		$(window).load(function(){
+			$.ajax({
+				url:'book_list.php',
+				success:function(data){
+					console.log(data);
+					tb1.innerHTML=data;
+				}
+			})
+		})
+
+
+		$('#tb1').click(function(e){
+	   	    var target=e.target;
+		    if(target.className==='btn-del'){
+			    e.preventDefault();
+			    console.log(target);
+			    var bid=target.getAttribute("href");
+			    if(window.confirm('删除吗？')){
+			    	$.ajax({
+			    		url:'del_book.php?bid='+bid,
+			    		success:function(data){
+			    			var num=data|0;
+			    			if(num>0){
+			    				tb1.removeChild(target.parentNode.parentNode);
+			    			}
+			    		}
+			    	})
+			    }
+		    }
+	  	})
+	</script>
+</body>
+</html>

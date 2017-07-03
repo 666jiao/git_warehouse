@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<form action="#" id="f5">
+<input type="text" placeholder="请输入用户名" id="uname"  required/>
+<input type="password" placeholder="请输入密码" name="upwd" autofocus required maxlength="6" minlength="3" />
+	<!-- <input type="email" name="userEmail" multiple> -->
+	<input type="number" name="age" max="45" min="18">
+	<input type="tel" pattern="^1[3578]\d{9}$" />
+	<input type="submit" value="test">
+</form>
+
+<script>
+	uname.onblur=function(){
+		// uname.validationMessage
+		if(uname.validity.valueMissing){
+			uname.setCustomValidity("用户名是必须的")
+			// uname.validationMessage="用户名是必须的"
+		}
+	}	
+	
+</script>
+</body>
+</html>

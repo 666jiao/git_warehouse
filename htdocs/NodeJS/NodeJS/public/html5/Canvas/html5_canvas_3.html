@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{
+			background: black;
+		}
+	</style>
+</head>
+<body>
+	<h1>h5新特性--canvas绘图</h1>
+	<canvas width="500" height="400" id="c1">您的浏览器不支持canvas绘图</canvas>
+
+<script>
+var ctx=c1.getContext("2d");
+ctx.textBaseline='top';//alphabetic/middle/bottom
+// ctx.lineWidth=1;
+ctx.font="30px Arial";
+ctx.fillStyle=rc();
+ctx.fillText("tarena_2017",0,0);
+// ctx.strokeStyle="#f0f";
+var txtWidth=ctx.measureText("tarena_2017").width;
+ctx.fillStyle=rc();
+ctx.fillText("tarena_2017",500-txtWidth,0);
+
+ctx.fillStyle=rc();
+ctx.fillText("tarena_2017",0,400-30);
+
+ctx.fillStyle=rc();
+ctx.fillText("tarena_2017",500-txtWidth,400-30);
+
+ctx.fillStyle=rc();
+ctx.fillText("tarena_2017",250-txtWidth/2,200-15);
+
+
+
+
+
+
+function rc(){
+  var r=Math.floor(Math.random()*256);
+  var g=Math.floor(Math.random()*256);
+  var b=Math.floor(Math.random()*256);
+  return `rgb(${r},${g},${b})`;
+}
+
+// ctx.font="30px SimHei";
+// ctx.strokeText("❤中国❤",350,350);
+
+</script>
+</body>
+</html>

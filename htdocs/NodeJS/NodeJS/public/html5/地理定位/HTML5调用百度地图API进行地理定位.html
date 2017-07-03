@@ -1,0 +1,33 @@
+<!DOCTYPE html>    
+<html>    
+<head>   
+<title>HTML5调用百度地图API进行地理定位实例</title>     
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    
+<script src="http://api.map.baidu.com/api?v=2.0&ak=134db1b9cf1f1f2b4427210932b34dcb"></script>    
+</head>    
+<body>       
+    <div style="height:900px;border:1px solid gray;margin:30px auto" id="container"></div> 
+
+<script type="text/javascript">    
+    var map = new BMap.Map("container");
+    // 缩放控件
+    map.addControl(new BMap.ScaleControl());
+    // 橄榄图控件
+    map.addControl(new BMap.OverviewMapControl()); 
+    // 地图类型控件   
+    map.addControl(new BMap.MapTypeControl());    
+    map.setCurrentCity("北京"); 
+    // 经纬度          
+    map.centerAndZoom(new BMap.Point(117.266295,31.857391), 19);
+    // 导航控件    
+    map.addControl(new BMap.NavigationControl());
+
+    var marker = new BMap.Marker(new BMap.Point(117.266295,31.857391));
+    //默认动画
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+    //创建标注
+    map.addOverlay(marker); 
+</script> 
+</body>    
+</html>    
+    

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+            width:100%;
+            overflow:hidden;
+            margin:0;
+            background:hsla(0,0%,0%,0.5);
+        }
+	</style>
+</head>
+<body>
+	<canvas id="c1">您的浏览器不支持canvas绘图</canvas>
+
+<script>
+// var ctx=c1.getContext("2d");
+// g.addColorStop(0,"#0f0");
+// g.addColorStop(0.5,"#ff0");
+// g.addColorStop(1,"#0ff");
+
+// ctx.fileStyle=g;
+// ctx.fillRect(0,0,500,400);
+
+var context=c1.getContext("2d"),
+w = c1.width = window.innerWidth,                                
+h = c1.height = window.innerHeight,
+t = 0,_t=1/100;  
+   
+// var lGrd=context.createLinearGradient(0,0,w,h);  
+// lGrd.addColorStop(0,rc());
+// lGrd.addColorStop(0.1,rc());
+// lGrd.addColorStop(0.2,rc());
+// lGrd.addColorStop(0.3,rc());
+// lGrd.addColorStop(0.4,rc());
+// lGrd.addColorStop(0.5,rc());
+// lGrd.addColorStop(0.6,rc());
+// lGrd.addColorStop(0.7,rc());
+// lGrd.addColorStop(0.8,rc());  
+// lGrd.addColorStop(0.9,rc());
+// lGrd.addColorStop(1,rc());  
+// context.fillStyle=lGrd;  
+// context.fillRect(0, 0, w, h);  
+// context.strokeStyle=lGrd;
+// context.stroke();
+
+
+// =========================================================
+function anim(){
+	var rGrd=context.createRadialGradient(w/2,h/2,1,w/2,h/2,h/2);  
+	rGrd.addColorStop(0,hs());
+	rGrd.addColorStop(0.1,hs());
+	rGrd.addColorStop(0.2,hs());
+	rGrd.addColorStop(0.3,hs());
+	rGrd.addColorStop(0.4,hs());
+	rGrd.addColorStop(0.5,hs());
+	rGrd.addColorStop(0.6,hs());
+	rGrd.addColorStop(0.7,hs());
+	rGrd.addColorStop(0.8,hs());  
+	rGrd.addColorStop(0.9,hs());  
+	rGrd.addColorStop(1,hs());  
+	context.fillStyle=rGrd;  
+	context.fillRect(0,0,w,h);
+	t += _t;
+	// window.requestAnimationFrame(anim); 
+}   
+anim() 
+
+setInterval(function(){
+	anim()
+},500)
+// =====================================================
+function rc(){
+  var r=Math.floor(Math.random()*256);
+  var g=Math.floor(Math.random()*256);
+  var b=Math.floor(Math.random()*256);
+  var a=Math.random();
+  return `rgba(${r},${g},${b},${a})`;
+}
+console.log(rc())
+function hs(){
+  var h=Math.floor(Math.random()*361);
+  var s=Math.floor(Math.random()*101);
+  var l=Math.floor(Math.random()*101);
+  var a=Math.random();
+  return `hsla(${h},${s}%,${l}%,${a})`;
+}
+console.log(hs())
+
+window.addEventListener('resize',function(){
+    c1.width = w = window.innerWidth;
+    c1.height = h = window.innerHeight;
+    console.log(w,h)
+},false);
+</script>
+</body>
+</html>

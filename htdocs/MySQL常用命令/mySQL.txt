@@ -1,0 +1,164 @@
+mysql -uroot -p 进入MySQL系统
+
+SELECT now();
+
+status;
+
+exit;
+
+source D:\mysql\a.sql
+
+CREATE DATABASE crm CHARSET=UTF8; 创建库
+CREATE DATABASE oa CHARSET=UTF8;
+
+
+SHOW DATABASES; 查询库
+
+USE crm; 进入库
+
+DROP DATABASE crm; 删除库
+DROP DATABASE IF EXISTS crm; 有crm这个库就删除库 没有就不删
+
+
+CREATE TABLE stu(
+ id INT,
+ name VARCHAR(10),
+ age INT
+);                  创建一个表
+
+
+CREATE TABLE cla(
+ id INT,
+ class VARCHAR(15),
+ num INT
+);
+
+
+SHOW TABLES; 查询表
+
+DESC stu; 查询表结构
+
+DROP TABLE stu; 删除表
+DROP TABLE IF EXISTS stu;  有就删没有就不删
+
+
+
+INSERT INTO book VALUES(1,'红楼梦',20); 添加一条记录
+
+
+SELECT * FROM book;查询记录
+
+
+ #列数据类型
+ int          整型  范围(-21亿~21亿) 年龄
+ BIGINT        更大型的整型
+ varchar(n)    字符串 n几个字符(字母，数字，汉字,特殊字符)
+ double(n,m)  浮点数(小数) double(10,2)
+             总长度10位其中包括2位小数
+ DECIMAL(10,2) 高精度浮点数
+ datetime     日期时间
+ date         日期
+
+
+
+CREATE TABLE student(
+  id INT,
+  name VARCHAR(20),
+  age INT,
+  time DATETIME
+);
+
+
+INSERT INTO student VALUES(1,'小明',20,'2011-2-25');
+INSERT INTO student VALUES(2,'小华',21,'2012-2-25');
+INSERT INTO student VALUES(3,'小红',19,'2013-2-25');
+INSERT INTO student VALUES(4,'小丽',17,'2014-2-25');
+INSERT INTO student VALUES(5,'小刚',18,'2015-2-25');
+
+DELETE FROM student WHERE id = 2; 删除一条记录
+DELETE FROM student WHERE id > 2; 删除大于2的记录
+DELETE FROM student WHERE id=4 AND name='小丽' AND age=17;
+DELETE FROM student WHERE time='2013-2-25';
+
+
+
+UPDATE student SET age=18 WHERE id=1; 修改一条记录
+update product set piace=piace*1.2 where id>2 and id<12;
+update product set piace=piace*1.2 where id; 修改表中全部价格
+
+
+INSERT INTO emp VALUES(1,'小明','男',2000.34,'2011-2-25');
+INSERT INTO emp VALUES(2,'小华','男',2300.34,'2012-2-25');
+INSERT INTO emp VALUES(3,'小红','女',2400.34,'2013-2-25');
+INSERT INTO emp VALUES(4,'小丽','女',2500.34,'2014-2-25');
+INSERT INTO emp VALUES(5,'小刚','男',2600.34,'2015-2-25');
+
+
+CREATE TABLE product(
+	id	INT PRIMARY KEY AUTO_INCREMENT,
+	name	VARCHAR(20),
+	piace	DOUBLE(10,2),
+	photo	VARCHAR(20),
+	time	DATETIME,
+	num	BIGINT
+);
+
+
+INSERT INTO product VALUES(null,'红楼梦',20.34,'images/f6.png',now(),226);
+INSERT INTO product VALUES(null,'三国演义',30.34,'images/f7.png',now(),446);
+INSERT INTO product VALUES(null,'西游记',40.34,'images/f8.png',now(),666);
+INSERT INTO product VALUES(null,'水浒传',50.34,'images/f1.png',now(),886);
+INSERT INTO product VALUES(null,'百年孤独',60.34,'images/f2.png',now(),123);
+INSERT INTO product VALUES(null,'少年维特之烦恼',20.84,'images/f3.png',now(),456);
+INSERT INTO product VALUES(null,'变形金刚',26.34,'images/f4.png',now(),672);
+INSERT INTO product VALUES(null,'千与千寻',29.34,'images/f5.png',now(),2987);
+INSERT INTO product VALUES(null,'天空之城',80.34,'images/f61.png',now(),2263);
+INSERT INTO product VALUES(null,'龙猫',123.34,'images/f62.png',now(),2264);
+INSERT INTO product VALUES(null,'速度与激情',120.34,'images/f16.png',now(),2526);
+INSERT INTO product VALUES(null,'武动乾坤',220.34,'images/f26.png',now(),2216);
+INSERT INTO product VALUES(null,'斗破苍穹',203.34,'images/f46.png',now(),2268);
+INSERT INTO product VALUES(null,'尸兄',23.34,'images/f46.png',now(),228);
+
+
+
+
+查询
+
+select id,name,piace from emp;
+select id,name,piace,piace*1.2 from emp;
+select piace from emp where piace>2300;
+select piace from emp where piace>2300 and piace<2600;
+select * from emp where piace>2300 and piace<2600;
+select * from emp order by piace;  升序
+select * from emp order by piace desc; 降序
+
+select max(piace),min(piace),avg(piace),count(piace),sum(piace) from emp; 查询最大值 最小值 平均值 总个数 总和
+select now(); 查询当前时间
+
+
+
+
+
+
+
+update product set piace=piace*0.95 where num=(select id from product_type where name='book');
+
+select * from product where piace=(select max(piace) from product);
+
+
+多表查询
+select p.id,p.name,t.name from product p,product_type t where p.id=t.id;
+
+
+分页查询
+select * from product limit 0,3; 查询表中前三行
+
+
+delete from product limit 10;删除第10列之前的所有数据
+
+
+netstat -anb 活动连接
+ping www.baidu.com 查询百度IP
+
+模糊查询
+select * from dd_book where bname like '%js%';

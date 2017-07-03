@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul>
+		<li>总数量<span id="t1"></span></li>
+		<li>正确数量<span id="c1"></span></li>
+		<li>错误数量<span id="e1"></span></li>
+	</ul>
+	<a href="save.html">继续输入</a>
+	<a href="test.html">继续测试</a>
+	<script>
+	t1.innerHTML=sessionStorage['total'];
+	c1.innerHTML=sessionStorage['correct'];
+	e1.innerHTML=sessionStorage['error'];
+
+	</script>
+</body>
+</html>

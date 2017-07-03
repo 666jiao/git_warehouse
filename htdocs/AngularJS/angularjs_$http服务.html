@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<button ng-click="getData()">获取数据</button>
+		<ul>
+			<li ng-repeat="dish in dishList">{{dish.name+dish.age+'岁'}}</li>
+		</ul>
+	</div>
+
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",['$scope','$http',function($scope,$http){
+	    	$scope.getData=function(){
+	    		// $http.get('data/test.json').success(function(data){
+	    		// 	// console.log(data)
+	    		// 	$scope.dishList=data;
+	    		// 	angular.forEach(data,function(value,key){
+	    		// 		console.log(value.age,key)
+	    		// 	})
+	    		// })
+
+	    		$http({
+	    			method:'get',
+	    			url:'data/test.json'
+	    		}).success(function(data){
+	    			// console.log(data)
+	    			$scope.dishList=data;
+	    			angular.forEach(data,function(value,key){
+	    				console.log(value.name,key,arguments)
+	    			})
+	    		}).error(function(){
+	    			console.log(arguments)
+	    		})
+	    	}
+	    }]);
+
+	</script>
+</body>
+</html>

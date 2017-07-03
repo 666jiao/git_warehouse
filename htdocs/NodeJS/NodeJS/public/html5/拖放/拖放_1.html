@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			position: relative;
+			margin: 0;
+		}
+		body:before{
+			content: '';
+			display: table;
+		}
+		#p3{
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<h1>拖动的源对象可能触发的事件</h1>
+	
+	<img src="trash.png" alt="" id="trash">
+	<hr>
+	<div id="box">
+		<img src="p3.png" alt="" id="p3">
+		<img src="p4.png" alt="" id="p4">
+		<img src="p5.png" alt="" id="p5">
+	</div>
+	
+	<script>
+	var startX=0;
+	var startY=0;
+	// 拖动开始
+	p3.ondragstart=function(e){
+		console.log(1)
+		startX=e.offsetX;
+		startY=e.offsetY;
+		console.log(startX,startY);
+	}
+	// 拖动中
+	p3.ondrag=function(e){
+		var ex=e.clientX;
+		var ey=e.clientY;
+		if(ex<=0&&ey<=0) return;
+		p3.style.left=(ex-startX)+'px';
+		p3.style.top=(ey-startY)+'px';
+	}
+	// 拖动结束
+	p3.ondragend=function(){
+			console.log(3)
+	}
+
+
+	// 进入目标对象
+	trash.ondragenter=function(){
+		console.log(1)
+	}
+	// 悬停在目标对象
+	trash.ondragover=function(e){
+		console.log(2)
+		e.preventDefault();
+	}
+	// 离开目标对象
+	trash.ondragleave=function(){
+		console.log(3)
+	}
+	// 在目标元素上释放
+	trash.ondrop=function(){
+		console.log(4)
+
+	}
+	</script>
+</body>
+</html>

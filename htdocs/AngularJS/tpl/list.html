@@ -1,0 +1,7 @@
+<h1>这是列表页</h1>
+<ul>
+	<li ng-repeat="item in myList">
+		<!-- <a href="#/myDetail/{{$index}}">{{item}}</a> -->
+		<button ng-click="jump($index)">{{item}}</button>
+	</li>
+</ul>

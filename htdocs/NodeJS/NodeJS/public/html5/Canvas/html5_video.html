@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>H5新特性---视频播放</h1>
+	<!-- autoplay 是否自动播放 -->
+	<!-- controls 是否显示播放控件 -->
+	<!-- loop 是否循环播放 -->
+	<!-- muted 是否是静音播放 -->
+	<!-- poster 在播放第一帧之前显示海报 -->
+	<!-- preload 视频预加载策略，可取值
+		metadata
+		auto
+		none -->
+	<video controls preload="auto" poster="video_audio/play.png" style="border: 1px solid red;" id="v2">
+		<source src="video_audio/birds.mp4">
+		<source src="video_audio/birds.ogg">
+		<source src="video_audio/birds.webm">
+		您的浏览器不支持video标签
+	</video>
+
+	<!-- currentTime 当前播放的时长 -->
+	<!-- duration  总时长-->
+
+
+
+
+
+	<!-- play()  播放视频 -->
+	<!-- pause() 暂停播放 -->
+	<!-- onplay 当视频开始播放时触发事件 -->
+	<!-- onpause 当视频开始暂停时触发事件 -->
+	<script>
+	// v2.playbackRate=3.0; //三倍速度播放
+	// v2.volume=0; //音量调成0
+	</script>
+</body>
+</html>

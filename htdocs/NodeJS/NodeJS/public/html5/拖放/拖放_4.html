@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0 auto;
+		}
+		body:before{
+			content: '';
+			display: table;
+		}
+		#chosen{
+			border: 1px solid #aaa;
+			width: 210px;
+			min-height: 110px;
+			margin: 0 auto;		
+		}
+		#box{
+			width: 610px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1>拖动的源对象可能触发的事件</h1>
+	
+	<div id="chosen">
+		<img src="img/p0.png" alt="" id="p0">
+	</div>
+	<hr>
+	<div id="box">
+		<img src="img/p3.png" alt="" id="p3">
+		<img src="img/p4.png" alt="" id="p4">
+		<img src="img/p5.png" alt="" id="p5">
+	</div>
+	
+	<script>
+	 var planeId=null;
+	 var list=document.querySelectorAll("#box img");
+	 for(var i=0;i<list.length;i++){
+	 	var plan=list[i];
+	 	plan.ondragstart=function(){
+	 		planeId=this.id;
+	 	}
+	 	plan.ondrag=function(){}
+	 	plan.onragend=function(){}
+	 }
+
+	 chosen.ondragenter=function(){}
+	 chosen.ondragover=function(e){
+	 	e.preventDefault();
+	 }
+	 chosen.ondragleave=function(){}
+	 chosen.ondrop=function(){
+	 	p0.style.display="none";
+	 	var p=document.getElementById(planeId);
+	 	chosen.appendChild(p);
+	 	if(chosen.children.length>=3){
+	 		var n=p0.nextElementSibling;
+	 		box.appendChild(n);
+	 	}
+	 	
+	 }
+	 box.ondragover=function(e){
+	 	e.preventDefault();
+	 }
+	 box.ondragleave=function(){}
+	 box.ondrop=function(){
+	 	var s=chosen.firstElementChild;
+	 	if(planeId!=="p0"){
+	 		this.appendChild(s.nextElementSibling);
+	 		p0.style.display="block";
+	 	}
+	 }
+	</script>
+</body>
+</html>

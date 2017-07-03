@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>ajax 显示图书列表</h1>
+   <table border="1" width='100%' style='border-collapse:collapse;text-align:center;'>
+    <thead>
+       <tr style="line-height:50px; background:#0f0;">
+			<th>编号</th>
+			<th>书名</th>
+			<th>图片</th>
+			<th>价格</th>
+			<th>发布时间</th>
+			<th>操作</th>
+		</tr>
+    </thead>
+    <tbody id="tb1"></tbody>
+   </table>
+
+	<script>
+		window.onload=function(){
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+				if (xhr.readyState==4 && xhr.status==200){
+					console.log(xhr.responseText);
+					tb1.innerHTML=xhr.responseText;
+				}
+			}
+			xhr.open('GET','book_list.php',true);
+			xhr.send(null);
+		}
+
+
+		tb1.onclick = function(e){
+	   	   var target = e.target;
+		   if(target.className==='btn-del'){
+			    e.preventDefault();
+			    console.log(target);
+			    var bid=target.getAttribute("href");
+			    // var id=target.dataset.toggle;
+			    var rs=window.confirm('删除吗？');
+			    if(rs){
+			    	// location.href='del_book.php?bid='+bid;
+			    	var xhr=new XMLHttpRequest();
+			    	xhr.onreadystatechange=function(){
+			    		if(xhr.readyState==4&&xhr.status==200){
+			    			var num=xhr.responseText|0;
+			    			if(num>0){
+			    				tb1.removeChild(target.parentNode.parentNode);
+			    			}
+			    		}
+			    	}
+			    	xhr.open('GET','del_book.php?bid='+bid,true);
+			    	xhr.send(null);
+			    }
+		   }
+	  	}
+	</script>
+</body>
+</html>

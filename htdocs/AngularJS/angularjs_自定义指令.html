@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<p>{{num}}</p>
+	</div>
+
+	<ts-hello></ts-hello>
+	<p ts-hello></p>
+	<p class="ts-hello"></p>
+	 <!-- directive:ts-hello -->
+	 <!-- directive:ts-hello -->
+	 <!-- directive:ts-hello -->
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.directive('tsHello',function(){
+	    	return {
+	    		template:'<h1>自定义指令</h1>',
+	    		restrict:'EACM',
+	    		replace: true
+	    	}
+	    })
+	    app.controller("contro",function($scope){
+	       $scope.num=10;
+	    });
+
+	</script>
+</body>
+</html>

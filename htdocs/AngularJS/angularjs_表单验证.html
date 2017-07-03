@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<form name="myForm" ng-submit="spp()">
+			<input type="text" required placeholder="请输入" name="myUserName" ng-model="user_name">
+			<span ng-show="myForm.myUserName.$dirty && myForm.myUserName.$invalid">请输入</span><hr>
+			<button ng-disabled="myForm.$invalid">提交</button>
+		</form>
+	</div>
+
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",function($scope){
+	    	$scope.spp=function(){
+	    		console.log($scope.user_name)
+	    	}
+	    });
+
+	</script>
+</body>
+</html>

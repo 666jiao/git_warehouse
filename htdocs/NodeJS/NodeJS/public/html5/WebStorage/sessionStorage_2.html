@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	var p=10;
+	var u="小明";
+	var s="小花";
+	var w="小丽";
+	sessionStorage['uname']=u;
+	sessionStorage['ss']=s;
+	sessionStorage['cc']=w;
+	sessionStorage.setItem("upwd",p);
+
+	var len=sessionStorage.length;
+	for(var i=0;i<len;i++){
+		var key=sessionStorage.key(i);
+		console.log(sessionStorage.getItem(key));
+	}
+	</script>
+</body>
+</html>

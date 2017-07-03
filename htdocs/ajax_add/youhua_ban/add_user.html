@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style>
+	.u_p{
+		display: inline-block;
+		min-width: 55px;
+		text-align: right;
+	}
+</style>
+</head>
+<body>
+<h1>用户注册</h1><hr>
+<form action="#">
+	<div class="u_p">用户名:</div>
+	<input type="text" id="uname"/>
+	<output id="unameTip" style="color:red"></output><hr>
+	<div class="u_p">密 码:</div>
+	<input type="password" id="upwd"/>
+	<output id="upwdTip" style="color:red"></output><hr>
+	<input type="button" value="注册" id="btn"/>
+	<output id="btnTip" style="color:red"></output>
+</form>
+
+
+<script src="jquery-1.11.1.min.js"></script>
+<script>
+	$("#btn").click(function(){
+		$.ajax({
+			url:'add_user.php?uname='+uname.value+'&upwd='+upwd.value,
+			success:function(data){
+				console.log(data.msg);
+			}
+		})
+	})
+
+	$("#uname").blur(function(){
+		$.ajax({
+			url:'existsuname.php?uname='+uname.value,
+			success:function(data){
+				console.log(data.code)
+				unameTip.innerHTML=data.msg;
+			}
+		})
+	})
+	
+	$("#upwd").blur(function(){
+		$.ajax({
+			url:'existsuname_1.php?upwd='+upwd.value,
+			success:function(data){
+				upwdTip.innerHTML=data.msg;
+			}
+		})
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="#">
+		用户名:<input type="text" id="uname"/>
+			   <span id="unameTip" style="color:red"></span><hr>
+		  密码:<input type="password" id="upwd"/>
+		  	   <span id="upwdTip" style="color:red"></span><hr>
+			   <input type="button" value="注册" id="btn"/>
+			   <span id="btnTip" style="color:red"></span>
+	</form>
+
+	<script>
+		btn.onclick=function(){
+			var u=uname.value;
+			var p=upwd.value;
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+				console.log(xhr.responseText);
+				if(xhr.responseText=='成功添加1条记录'){
+					btnTip.innerHTML='注册成功';
+				}else if(xhr.responseText=='注册失败'){
+					btnTip.innerHTML=xhr.responseText;
+				}
+			}
+			xhr.open('GET','add_user.php?uname='+u+'&upwd='+p,true);
+			xhr.send(null);
+		}
+
+		uname.onblur=function(){
+			var u=uname.value;
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+				unameTip.innerHTML=xhr.responseText;
+			}
+			xhr.open('GET','existsuname.php?uname='+u,true);
+			xhr.send(null);
+		}
+		
+		upwd.onblur=function(){
+			var p=upwd.value;
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+				upwdTip.innerHTML=xhr.responseText;
+			}
+			xhr.open('GET','existsuname_1.php?upwd='+p,true);
+			xhr.send(null);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+ </head>
+  <body>
+  <h1>使用jsonp方式解决跨域限制</h1>
+  <script src="jquery-1.11.1.min.js"></script>
+  <script>
+     var s=document.createElement("script");
+     s.src="http://localhost/ajax_jsonp/youhua_ban/06_jsonp.php";
+     s.async=true;
+     document.head.appendChild(s);
+
+    function doResponse(data){
+       for(var i in data) $(document.body).append("<hr/>"+i+" : "+data[i]);
+    }
+  </script>
+ </body>
+</html>

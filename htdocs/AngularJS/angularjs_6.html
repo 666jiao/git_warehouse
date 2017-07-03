@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro" ng-app="myapp">
+		<h2>{{helloTo.title}}</h2>
+		<p>{{num}}</p>
+		<h1>{{count}}</h1>
+		<button ng-click="handleClick()">按钮</button>
+
+		<table border="1">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>名字</th>
+					<th>年龄</th>
+					<th>性别</th>
+					<th>分数</th>
+					<th>照片</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="(key,value) in typ">
+					<td>{{key}}</td>
+					<td>{{value.name}}</td>
+					<td>{{value.age}}</td>
+					<td>{{value.sex}}</td>
+					<td>{{value.score}}</td>
+					<td><img ng-src="img/{{value.imgUrl}}" alt=""></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<button ng-click="addObj()">加载更多...</button>
+		<div ng-repeat="dash in typ track by $index">
+			<img ng-src="img/{{dash.imgUrl}}" alt="">
+			<p>{{dash.name}}</p>
+			<p>{{dash.score}}</p>
+		</div>
+	</div>
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",function($scope){
+	        $scope.helloTo={title:"你好 ！第一个AngularJS程序示例"};
+	        console.log('开起控制器');
+	        $scope.num=100;
+
+	        $scope.count=0;
+
+	        $scope.handleClick=function(){
+		        	$scope.count++;
+	        }
+
+	        $scope.typ=[
+						{name:'小明',age:20,sex:'未知',score:10,imgUrl:'1.jpg'},
+						{name:'小花',age:18,sex:'女',score:100,imgUrl:'2.jpg'},
+						{name:'小红',age:18,sex:'女',score:100,imgUrl:'3.jpg'},
+						{name:'小美',age:18,sex:'女',score:98,imgUrl:'4.jpg'},
+						{name:'小华',age:18,sex:'男',score:50,imgUrl:'1.jpg'},
+						{name:'小刚',age:18,sex:'男',score:10,imgUrl:'2.jpg'},
+						{name:'小丽',age:18,sex:'女',score:100,imgUrl:'3.jpg'},
+						{name:'小琪',age:18,sex:'女',score:85,imgUrl:'4.jpg'}];
+			$scope.imgUrl='1.jpg';	
+			$scope.addObj=function(){
+				$scope.typ.push({name:'小红',age:18,sex:'女',score:100,imgUrl:'3.jpg'})
+			}
+	    });
+	</script>
+</body>
+</html>

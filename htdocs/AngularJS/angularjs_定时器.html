@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<h1>{{count}}</h1>
+	</div>
+
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",['$scope','$interval',function($scope,$interval){
+	    	$scope.count=0;
+			// setInterval(function(){
+			// 	$scope.count++;
+			// 	console.log($scope.count)
+			// 	$scope.$digest();
+			// 	// $scope.$apply();
+			// },500)
+			$interval(function(){
+				$scope.count++;
+				console.log($scope.count)
+			},500);
+	    }]);
+
+	</script>
+</body>
+</html>

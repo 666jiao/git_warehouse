@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="#">
+	书名:<input type="text" id="bname"/><hr>
+	图片:<input type="text" id="pic"/><hr>
+	价格:<input type="text" id="price"/><hr>
+	时间:<input type="text" id="pubdate"/><hr>
+		<input type="button" value="添加" id="btn" />
+	</form>
+
+	<script src="jquery-1.11.1.min.js"></script>		
+	<script>
+		$("#btn").click(function(){
+			$.ajax({
+				type:"POST",
+				url:"add_book.php",
+				data:{bname:bname.value,pic:pic.value,price:price.value,pubdate:pubdate.value},
+				success:function(data){
+					console.log(data)
+					var num=data|0;
+					if(num>0){
+						alert("新记录添加成功！"+num);
+						bname.value='';
+						pic.value='';
+						price.value='';
+						pubdate.value='';
+					}else alert("添加失败，错误代码是："+num);
+				}
+			})
+		})
+	</script>
+</body>
+</html>

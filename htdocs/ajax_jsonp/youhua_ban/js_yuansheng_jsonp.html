@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>原生js跨域访问方式</h1>
+	<!-- <button id="btn1">使用jsonp方式解决跨域限制</button> -->
+	<!-- <script type="text/javascript" async="" src="http://localhost/ajax_jsonp/jsonp.php"></script> --> 
+	<script>
+	// btn1.onclick=function(){
+	// 	var script = document.createElement('script');
+	//         script.setAttribute("type","text/javascript");
+	//         // script.setAttribute("async",true);
+	//         script.async = true;
+	//         script.src = "http://127.0.0.1/ajax_jsonp/jsonp.php";
+	//         document.head.appendChild(script);
+	// }
+
+
+	// var s = document.createElement("script");
+ //    s.src="http://localhost/ajax_jsonp/jsonp.php";
+ //    s.async = true;
+ //    document.head.appendChild(s);
+
+
+//=======================================================跨域访问
+		function doResponse(data){
+			console.log(data);
+			for(var i in data){
+				console.log(data[i]);
+				var p = document.createElement('p');
+				p.innerHTML = i+" : "+data[i];
+				document.body.append(p);
+			}
+		}
+
+		function addScriptTag(src){
+	      	var script = document.createElement('script');
+	        script.setAttribute("type","text/javascript");
+	        script.async = true;
+	        script.src = src;
+	        document.head.appendChild(script);
+	    }
+	    var s="http://localhost/ajax_jsonp/youhua_ban/06_jsonp.php";
+	    window.onload = function(){
+	        addScriptTag(s);
+	    }
+//=========================================================
+	</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div style="overflow: hidden;background: cyan;" id="sp">
+		<a href="login.html" style="float: right;" id="a1">请登录</a>
+	</div>
+	<script>
+	console.log(!(sessionStorage.getItem('uname')))
+	var n=sessionStorage.getItem('uname');
+	if(n) sp.innerHTML=`欢迎回来:${n} <a href="logout.html" style="float: right;" id="a2">退出</a>`;
+	
+	</script>
+</body>
+</html>

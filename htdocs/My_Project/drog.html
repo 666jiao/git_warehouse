@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+#div1{
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: absolute;
+}
+</style>
+</head>
+<body>
+<div id="div1" style="top:0; left:0;">sss</div>
+
+<script>
+var pX=0,pY=0;
+div1.onmousedown=function(event){
+		pX=(this.style.left|0)-event.x;
+		pY=(this.style.top|0)-event.y;
+		console.log(pX,pY);
+
+	document.onmousemove=function(event){
+		var l=pX+event.x,s=pY+event.y;
+		if(l<0){l=0}else if(l>(window.innerWidth-div1.offsetWidth)){l=window.innerWidth-div1.offsetWidth}
+		if(s<0){s=0}else if(s>(window.innerHeight-div1.offsetHeight)){s=window.innerHeight-div1.offsetHeight}
+			console.log(document.body.offsetWidth-div1.offsetWidth,window.innerHeight,div1.offsetHeight)
+		div1.style.left=l+"pX";
+		div1.style.top=s+"px";
+		console.log(div1.style.left,div1.style.top,pX+event.x,pY+event.y)
+	}
+	document.onmouseup=function(){
+		document.onmousemove=null;
+		div1.onmousedown=null;
+	}
+
+	return false;
+}
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+CREATE DATABASE sohu CHARSET=UTF8;
+
+use sohu;
+
+CREATE TABLE user(
+ uid   INT PRIMARY KEY AUTO_INCREMENT,
+ uname VARCHAR(20),
+ upwd  VARCHAR(32)
+);
+
+
+INSERT INTO user VALUES(null,'小明','12345');
+INSERT INTO user VALUES(null,'小红','12345');
+INSERT INTO user VALUES(null,'小丽','12345');

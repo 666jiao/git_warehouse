@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+
+	<div ng-controller="contro">
+		<h1>{{nowPort}}</h1>
+		<button ng-click="handleClick()">按钮</button><hr>
+	</div>
+
+	<div ng-controller="contro1">
+	
+		<h1>{{"接受的数据为："+msgFromSon}}</h1>
+		<button ng-click="sendToChild()">向子控制器传值</button><hr>
+
+		<div ng-controller="contro2">
+			<h1>{{"接受的数据为："+msgFromFather}}</h1>
+			<button ng-click="sendToFather()">向父控制器传值</button>
+		</div>
+
+	</div>
+	
+	<script>
+	    var app=angular.module("myapp",['ng']);
+
+	    app.controller("contro",function($scope,$location){
+	       	$scope.handleClick=function(){
+	       		$scope.nowPort=$location.port();
+	       		console.log("端口号："+$scope.nowPort);
+	       	}
+	    });
+
+	    app.controller("contro1",function($scope){
+	    	$scope.sendToChild=function(){
+	    		$scope.$broadcast('fromFather','小子，在伽马');
+	    	}
+
+	    	$scope.$on('fromSon',function(event,data){
+	    		console.log(data)
+	    		$scope.msgFromSon=data
+	    	})
+	    });
+	    app.controller("contro2",function($scope){
+	    	$scope.sendToFather=function(){
+	    		$scope.$emit('fromSon','你好，我们在学习');
+	    	}
+
+	    	$scope.$on('fromFather',function(event,data){
+	    		console.log(data)
+	    		$scope.msgFromFather=data;
+	    	})
+	    });
+	</script>
+</body>
+</html>

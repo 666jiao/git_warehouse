@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-route.js"></script>
+</head>
+<body ng-controller="bodyCtrl">
+	<!-- <div ng-controller="myCtrl"></div> -->
+
+	<ng-view></ng-view>
+	<script>
+	    var app=angular.module("myApp",['ng','ngRoute']);
+	    // 配置路由词典
+	    app.config(function($routeProvider){
+	    	$routeProvider
+	    	.when('/mylogin',{templateUrl:'tpl/myLogin.html'})
+	    	.when('/mymain',{templateUrl:'tpl/myMain.html'})
+	    	.when('/myregister',{templateUrl:'tpl/myRegister.html'})
+	    	.otherwise({redirectTo:'/mylogin'})
+	    })
+
+
+
+	    app.controller("bodyCtrl",['$scope','$location',function($scope,$location){
+	    	$scope.jump=function(routeUrl){
+	    		$location.path(routeUrl)
+	    	}
+	    }]);
+	</script>
+</body>
+</html>

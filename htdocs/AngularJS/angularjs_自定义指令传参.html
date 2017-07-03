@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<p>{{num}}</p>
+	</div>
+	<ts-hello test-name='自定义传参'></ts-hello>
+	<ts-directive test-age='20'></ts-directive>
+
+	<button ng-click="count = count + 1" ng-init="count=0">Increment</button>
+	<p>count: {{count}}</p>
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.directive('tsHello',function(){
+	    	return {
+	    		template:'<h1>{{testName}}</h1>',
+	    		restrict:'EACM',
+	    		scope:{
+	    			testName:'@'
+	    		}
+	    	}
+	    })
+
+	    app.directive('tsDirective',function(){
+	    	return {
+	    		template:'<p>{{testAge}}</p>',
+	    		scope:{
+	    			testAge:'@'
+	    		}
+	    	}
+	    })
+	    
+	    app.controller("contro",function($scope){
+	       $scope.num=10;
+	    });
+
+	</script>
+</body>
+</html>

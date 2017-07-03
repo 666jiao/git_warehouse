@@ -1,0 +1,12 @@
+ng-app 定义ng
+ng-init 初始化变量
+ng-bind 绑定显示
+ng-repeat 循环元素
+ng-if 判断元素
+ng-src 图片路径
+ng-show 显示
+ng-disabled 不可点
+ng-click 点击事件
+ng-controller 定义控制器
+ng-model 监听数据变化
+ng-options 创建option

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<h2>单次测试</h2>
+	<ul id="list">
+		<!-- <li><span>red</span><input></li>
+		<li><span>green</span><input></li> -->
+	</ul>
+	<input type="button" value="提交试卷" id="btn1">
+	<script>
+	for(var i=0,html='';i<localStorage.length;i++){
+		var k=localStorage.key(i);
+		var s=localStorage.getItem(k);
+		html+=`<li><span>${s}</span><input></li>`;
+		console.log(localStorage.getItem(k));
+	}
+	list.innerHTML=html;
+
+	btn1.onclick=function(){
+		var total=localStorage.length;
+		var correct=0;
+		var error=0;
+		var inputList=document.querySelectorAll('#list input');
+		for(var i=0;i<inputList.length;i++){
+			var c=inputList[i].value;
+			var key=localStorage.key(i);
+			var e=localStorage[key];
+			if(c===key){
+				correct++;
+			}
+		}
+		sessionStorage['total']=total;
+		sessionStorage['correct']=correct;
+		sessionStorage['error']=total-correct;
+		location.href="result.html";
+	}
+		
+	</script>
+</body>
+</html>

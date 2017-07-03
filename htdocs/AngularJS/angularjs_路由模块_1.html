@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-route.js"></script>
+</head>
+<body>
+	<!-- <div ng-controller="myCtrl"></div> -->
+
+	<ng-view></ng-view>
+	<script>
+	    var app=angular.module("myApp",['ng','ngRoute']);
+	    // 配置路由词典
+	    app.config(function($routeProvider){
+	    	$routeProvider
+	    	.when('/Proson',{templateUrl:'tpl/person.html'})
+	    	.when('/Main',{templateUrl:'tpl/main.html'})
+	    	.when('/Set',{templateUrl:'tpl/set.html'})
+	    	.otherwise({redirectTo:'/Proson'})
+	    })
+
+
+
+	    app.controller("personCtrl",['$scope','$location',function($scope,$location){
+	    	$scope.jump=function(s){
+	    		$location.path(s)
+	    	}
+	    }]);
+
+	    app.controller("mainCtrl",['$scope','$location',function($scope,$location){
+	    	$scope.jump1=function(s){
+	    		$location.path(s)
+	    	}
+	    }]);
+	</script>
+</body>
+</html>

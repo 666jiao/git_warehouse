@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- video_audio -->
+	<canvas id="c1"></canvas>
+	<script>
+	var progress=0;
+	var imgBg=new Image();
+	imgBg.src="video_audio/bg.jpg";
+	imgBg.onload=function(){
+		progress+=25;
+		if(progress==100){
+			startDraw();
+		}
+	}
+	var imgDisc=new Image();
+	imgDisc.src="video_audio/disc.png";
+	imgDisc.onload=function(){
+		progress+=25;
+		if(progress==100){
+			startDraw();
+		}
+	}
+	var imgPlay=new Image();
+	imgPlay.src="video_audio/play.png";
+	imgPlay.onload=function(){
+		progress+=25;
+		if(progress==100){
+			startDraw();
+		}
+	}
+	var imgPause=new Image();
+	imgPause.src="video_audio/pause.png";
+	imgPause.onload=function(){
+		progress+=25;
+		if(progress==100){
+			startDraw();
+		}
+	}
+
+	function startDraw(){
+		console.log(imgPlay)
+		console.log(imgPause)
+		var w=imgBg.width;
+		var h=imgBg.height;
+		c1.width=w;
+		c1.height=h;
+		var ctx=c1.getContext("2d");
+		ctx.drawImage(imgBg,0,0);
+		ctx.beginPath();
+		ctx.arc(w/2,h/2,120,0,2*Math.PI);
+		ctx.fill();
+		var left=120*Math.sin(Math.PI/4);
+		ctx.drawImage(imgDisc,w/2-left,h/2-left,2*left,2*left);
+		ctx.drawImage(imgPlay,w/2-40,h-80,80,80);
+		c1.onmousemove=function(e){
+			var ex=e.offsetX;
+			var ey=e.offsetY;
+			var rx=w/2;
+			var ry=h-40;
+			var r=40;
+			if(Math.sqrt((ex-rx)*(ex-rx)+(ey-ry)*(ey-ry))<=r){
+				c1.style.cursor="pointer";
+			}else{
+				c1.style.cursor="default";
+			}
+			this.onclick=function(e){
+				if(Math.sqrt((ex-rx)*(ex-rx)+(ey-ry)*(ey-ry))<=r){
+					console.log("播放按钮被电击");
+				}
+			}
+		}
+	}
+	</script>
+</body>
+</html>

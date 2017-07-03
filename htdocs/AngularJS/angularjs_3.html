@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body ng-init="imgUrl='1.jpg'">
+	<span ng-init="isMemeber=true"></span>
+	<p ng-if="isMemeber">仅会员可见</p>
+	<img ng-src="img/{{imgUrl}}" alt="">
+
+	<span ng-init="hasMore=false"></span>
+	<button ng-show="hasMore">加载更多</button>
+	<p ng-show="!hasMore">没有更多数据可以加载了</p>
+
+	<span ng-init="isAgree=false"></span>
+	<button ng-disabled="!isAgree">点击按钮</button>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<form action="msg_update.php" method="post">
+		<input type="hidden" name="mid" value="" id="inp1">
+		发布人姓名
+		<input type="text" name="uname"/>
+		联系电话
+		<input type="text" name="phone"/>
+		留言内容
+		<input type="text" name="content"/>
+		<input type="submit" name="修改"/>
+	</form>
+
+
+	<script>
+		(function(hash){
+	      if(location.search.slice(1)!=""){
+	          for(var i=0;i<location.search.slice(1).split("&").length;i++){
+	              hash[location.search.slice(1).split("&")[i].split("=")[0]]=location.search.slice(1).split("&")[i].split("=")[1];
+	          }
+	      }
+	      console.log(hash);
+	      console.log(hash["mid"],hash["pwd"],hash["favs"],hash["fas"],hash["fvs"]);
+	      var inp1 = document.getElementById("inp1");
+		  inp1.value=hash["mid"];
+	  	})([]);
+	</script>
+</body>
+</html>

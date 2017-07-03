@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn1">原生：xml访问</button>
+	<button id="btn2">JQ：xml访问</button>
+	<script src="jquery-1.10.2.min.js"></script>
+	<script>
+	btn1.onclick=function(){
+		var xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4 && xhr.status==200){
+					var name=xhr.responseXML.querySelectorAll("name");
+					console.log(name.length);
+					for(var i of name){
+						console.log(i.innerHTML);
+					}
+				}
+		}
+		xhr.open("GET","xml_01.php",true);
+		xhr.send(null);
+	}
+
+	$("#btn2").click(function(){
+		$.ajax({
+				type:"GET",
+				url:"xml_01.php",
+				dataType:"xml",
+				success:function(data){
+					console.log(data)
+					var name=$(data).find("name");
+					name.each(function(s,i){
+						console.log(name.eq(s).html());
+						console.log(s,i)
+					})
+					
+					// for(var i=0;i<name.length;i++){
+					// 	console.log(name.eq(i).html());
+					// }
+					// 
+					// for(var i of name){
+					// 	console.log(i.innerHTML);
+					// }
+				}
+			})
+	})
+	
+	</script>
+</body>
+</html>

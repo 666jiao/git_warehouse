@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="msg_add.php" method="post" id="inp4">
+		发布人姓名
+		<input type="text" name="uname" id="uname"/>
+		联系电话
+		<input type="text" name="phone" id="phone"/>
+		留言内容
+		<input type="text" name="content" id="content"/>
+		<input type="submit" name="添加"/>
+	</form>
+	<br>
+	<a href="http://127.0.0.1/msg_add_del/msg_select.php">查看记录</a>
+
+	<script>
+	  var uReg=/^\s*$/;
+	  inp4.onsubmit=function(){
+			if(uReg.test(phone.value)||uReg.test(content.value)||uReg.test(uname.value)){
+				console.log(uReg.test(phone.value),uReg.test(content.value));
+				alert("不能为空！");
+				return false;
+			} 
+ 
+			console.log(phone.value,content.value,isNaN(phone.value));
+			if(isNaN(phone.value)){
+				alert("号码请输入数字！");
+				return false;
+			}
+			return true;
+	   }
+	</script>
+</body>
+</html>

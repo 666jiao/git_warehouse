@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="myCtrl">
+
+	</div>
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("myCtrl",function($scope){
+	    	// json转换成对象
+	       var jsonStr='{"name":"zhangsan","age":20}';
+	       var student=angular.fromJson(jsonStr);
+	       console.log(student);
+
+	       // 对象转换成json
+	       var obj={price:20,count:100};
+	       var pro=angular.toJson(obj);
+	       console.log(pro);
+
+	       // 转换成全大写
+	       var name="Math";
+	       console.log(angular.uppercase(name));
+
+
+	       // forEach
+	       var list=[100,200,300,400];
+	       angular.forEach(list,function(value,key){
+	       	console.log(key+'========'+value)
+	       })
+	    });
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body,html{
+			height: 100%;
+		}
+		.blue{
+			background: #ddf;
+			color: #33a;
+		}
+		.pink{
+			background: #fdf;
+			color: #a3a;
+		}
+		.dark{
+			background: #333;
+			color: #eee;
+		}
+	</style>
+</head>
+<body>
+	<select name="" id="sel">
+		<option value="">-----</option>
+		<option value="blue">蔚蓝天空</option>
+		<option value="pink">芭比公主</option>
+		<option value="dark">黑暗主题</option>
+	</select>
+	<a href="usercenter.html">用户中心</a>
+	<script>
+	sel.onchange=function(e){
+		console.log(e.target.value);
+		var t=e.target.value;
+		// document.body.setAttribute("id",t);
+		document.body.className=t;
+		localStorage['sel']=t;
+	}
+
+	window.onstorage=function(){
+		var t=localStorage['sel'];
+		if(t) document.body.className=t;
+	}
+	</script>
+</body>
+</html>

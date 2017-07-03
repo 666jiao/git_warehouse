@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Insert a title</title>
+    <meta charset="utf-8">
+    <style></style>
+  </head>
+  <body>
+    <table border="1" width="80%">
+     <thead>
+      <tr>
+        <td>标题</td>
+        <td>价格</td>
+        <td>时间</td>
+        <td>内容</td>
+        <td>操作</td>
+      </tr>
+      </thead>
+      <tbody id="tb1"></tbody>
+    </table>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+      $.ajax({
+        type:"GET",
+        url:"/book",
+        success:function(data){
+          for(var i=0,s='';i<data.length;i++){
+            s+=`<tr>
+                  <td>${data[i].title}</td>
+                  <td>${data[i].price}</td>
+                  <td>${data[i].pubdate}</td>
+                  <td>${data[i].intro}</td>
+                  <td><a href="${data[i].bid}" class="btn-del">删除</a></td>
+                </tr>`;
+          }
+          $("#tb1").html(s);
+        }
+      })
+
+      $("#tb1").click(function(e){
+          var target=e.target;
+          if($(target).hasClass("btn-del")){
+              e.preventDefault();
+              var d=$(target).attr("href");
+              console.log(d);
+              $.ajax({
+                  type:"POST",
+                  url:"/dele",
+                  data:{d:d},
+                  success:function(data){
+                    alert(data.msg+data.bid)
+                  }
+              })
+          }
+      })
+
+
+    </script>
+  </body>
+</html>

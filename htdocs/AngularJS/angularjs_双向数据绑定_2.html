@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<p>{{color}}</p>
+		<select name="" id="" ng-model="color">
+			<option value="1">red</option>
+			<option value="2">green</option>
+			<option value="3">blue</option>
+		</select>
+		<img ng-src="img/{{color}}.jpg" alt="">
+		
+		<input type="checkbox" ng-model="sk">
+		<input type="button" value="按钮" ng-disabled="!sk">
+		<textarea name="" id="" cols="30" rows="10" ng-model="msg"></textarea>
+
+
+		<select ng-model="city" ng-options="city.name for city in cityList"></select>
+		<select ng-model="imgs" ng-options="imgs.name for imgs in imgList"></select>
+		<img ng-src="img/{{imgs.value}}.jpg" alt="">
+	</div>
+	
+	
+
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",['$scope',function($scope){
+	    	$scope.color="2";
+	    	$scope.$watch('color',function(newValue,oldValue){
+	       		console.log($scope.color,arguments)
+	        });
+	    	$scope.msg="nihao";
+	    	$scope.$watch('msg',function(){
+	    		console.log($scope.msg)
+	    	})
+
+
+	    	$scope.cityList=[
+	    					{name:'北京',value:'bj'},
+	    					{name:'上海',value:'sh'},
+	    					{name:'深圳',value:'sz'},
+	    					{name:'广州',value:'gz'}];
+			$scope.city=$scope.cityList[0];
+
+			$scope.imgList=[
+	    					{name:'iPhone',value:1},
+	    					{name:'OPPO',value:2},
+	    					{name:'vivo',value:3},
+	    					{name:'LG',value:4}];
+			$scope.imgs=$scope.imgList[0];
+	    }]);
+
+	</script>
+</body>
+</html>

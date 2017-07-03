@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<input type="text" ng-model="myInputTxt">
+		<p>{{myInputTxt}}</p>
+
+		<input type="text" ng-model="keyword">
+		<p>{{keyword}}</p>
+	</div>
+
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",['$scope',function($scope){
+	    	$scope.keyword="小明";
+	       $scope.$watch('keyword',function(newValue,oldValue){
+	       		console.log($scope.keyword,arguments)
+	       });
+	    }]);
+
+	</script>
+</body>
+</html>

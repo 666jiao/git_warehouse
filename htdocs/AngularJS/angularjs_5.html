@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro" ng-app="myapp">
+		<h2>{{helloTo.title}}</h2>
+		<p>{{num}}</p>
+		<h1>{{count}}</h1>
+		<button ng-click="handleClick()">按钮</button>
+	</div>
+	<script>
+	    var app=angular.module("myapp",['ng']);
+	    app.controller("contro",function($scope){
+	        $scope.helloTo={title:"你好 ！第一个AngularJS程序示例"};
+	        console.log('开起控制器');
+	        $scope.num=100;
+
+	        $scope.count=0;
+
+	        $scope.handleClick=function(){
+		        	$scope.count++;
+	        }
+	    });
+	</script>
+</body>
+</html>

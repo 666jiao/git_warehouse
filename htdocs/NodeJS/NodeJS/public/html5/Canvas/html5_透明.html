@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{
+		}
+	</style>
+</head>
+<body>
+	<h1>h5新特性--canvas绘图</h1>
+  
+	<canvas width="600" height="300" id="canvas">您的浏览器不支持canvas绘图</canvas>
+<script>
+var canvas=document.getElementById("canvas");  
+var context=canvas.getContext("2d");  
+   
+var lCanvas =document.createElement("canvas");  
+lCanvas.width = canvas.width/2;  
+lCanvas.height = lCanvas.width;  
+var lContext =lCanvas.getContext("2d");  
+lContext.fillStyle =rc();  
+   
+var rCanvas =document.createElement("canvas");  
+rCanvas.width = canvas.width/2;  
+rCanvas.height = rCanvas.width;  
+var rContext =rCanvas.getContext("2d");  
+rContext.fillStyle = rc();  
+   
+const TIME=0.01；  
+var factor=0;  
+   
+function changeAlpha(){  
+         factor+=TIME;  
+         lContext.globalAlpha=(Math.sin(factor)+1)/2;  
+         rContext.globalAlpha=(Math.cos(factor)+1)/2;  
+}  
+   
+function draw(){  
+         context.clearRect(0,0, canvas.width, canvas.height);  
+         lContext.clearRect(0,0, lCanvas.width, lCanvas.height);  
+         rContext.clearRect(0,0, rCanvas.width, rCanvas.height);  
+         changeAlpha();  
+         lContext.fillRect(0,0, lCanvas.width, lCanvas.height);  
+         rContext.fillRect(0,0, rCanvas.width, rCanvas.height);  
+         context.drawImage(lCanvas,0,0);  
+         context.drawImage(rCanvas,300,0);  
+}  
+   
+setInterval(draw, TIME);  
+
+
+
+
+function rc(){
+  var r=Math.floor(Math.random()*256);
+  var g=Math.floor(Math.random()*256);
+  var b=Math.floor(Math.random()*256);
+  return `rgb(${r},${g},${b})`;
+}
+</script>
+</body>
+</html>

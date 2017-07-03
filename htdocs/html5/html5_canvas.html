@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{
+			background: green;
+		}
+	</style>
+</head>
+<body>
+	<h1>h5新特性--canvas绘图</h1>
+	<canvas width="800" height="500" id="c1">您的浏览器不支持canvas绘图</canvas>
+
+<script>
+var ctx=c1.getContext("2d");
+ctx.lineWidth=1;
+ctx.fillStyle="#ff0";
+ctx.strokeStyle="#000";
+
+ctx.strokeRect(590,290,200,200);
+ctx.strokeRect(10,10,200,200);
+ctx.strokeRect(590,10,200,200);
+ctx.strokeRect(10,290,200,200);
+ctx.strokeRect(300,150,200,200);
+
+ctx.fillRect(30,30,150,150);
+ctx.fillRect(30,200,150,150);
+ctx.fillRect(325,175,150,150);
+ctx.fillRect(325,175,150,150);
+ctx.fillRect(325,175,150,150);
+
+ctx.font="30px Arial";
+ctx.strokeText("Hello World!",250,50);
+</script>
+</body>
+</html>

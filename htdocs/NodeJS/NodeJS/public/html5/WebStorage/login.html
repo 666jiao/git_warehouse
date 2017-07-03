@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="">
+		<input type="text" id="uname">
+		<input type="password" id="upwd">
+		<input type="button" value="登录" id="inp">
+	</form>
+	<script>
+		
+
+		inp.onclick=function(){
+			var u=uname.value;
+			var p=upwd.value;
+
+			sessionStorage['uname']=u;
+			sessionStorage.setItem("upwd",p);
+			alert("登陆成功")
+			setTimeout(function(){
+				location.href="index.html";
+			},3000)
+		}
+	</script>
+</body>
+</html>

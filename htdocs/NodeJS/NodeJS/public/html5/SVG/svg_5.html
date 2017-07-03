@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>H5的新特性--SVG绘图矩形</title>
+	<style>
+		 body{
+            width:100%;
+            overflow:hidden;
+            margin:0;
+            background: hsla(120,80%,90%,0.5);
+        }
+		/*body{
+			text-align: center;
+		}*/
+		svg{
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<h1>H5的新特性--SVG绘图矩形</h1>
+	<svg width="500" height="400" id="s1">
+		
+	</svg>
+	
+	<script>
+		var data=[
+			{"lab":"部门1","value":300},
+			{"lab":"部门2","value":310},
+			{"lab":"部门3","value":320},
+			{"lab":"部门4","value":330},
+			{"lab":"部门5","value":340}
+		];
+
+
+		for(var i=0;i<data.length;i++){
+			console.log(data[i].value)
+			var dept=data[i];
+			var rect=document.createElementNS("http://www.w3.org/2000/svg","rect");
+			rect.setAttribute("width",50);
+			rect.setAttribute("height",dept.value);
+			rect.setAttribute("x",100*i);
+			rect.setAttribute("y",0);
+			s1.appendChild(rect);
+		}
+	</script>
+
+</body>
+</html>

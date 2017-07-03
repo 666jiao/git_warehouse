@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+ <h1>h5新特性--音频播放</h1>
+  <audio src="video_audio/bg.mp3" loop volume="0.1" id="a2" controls></audio>
+ <label>
+   <input type="checkbox" id="bgSwitch"/>
+   是否播放背景音乐
+ </label>
+ <script>
+   bgSwitch.onchange=function(){
+       if(this.checked){
+         a2.volume=0;
+         a2.play();
+         var t = setInterval(function(){
+           a2.volume += 0.1;
+           if(a2.volume.toFixed(1)>=1){
+             clearInterval(t);
+             console.log("2:"+a2.volume);
+           }
+         },1000);
+       }else{
+         var v=a2.volume;
+         var t=setInterval(function(){
+           v -= 0.1;
+           if(v>=0){
+             a2.volume = v;
+           }else{
+             clearInterval(t);
+             a2.pause();
+           }
+
+         },1000);
+       }
+   }
+ </script>
+</body>
+</html>

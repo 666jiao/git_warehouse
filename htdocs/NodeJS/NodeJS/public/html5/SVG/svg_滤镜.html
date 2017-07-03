@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			text-align: center;
+		}
+		svg{
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<svg width="800" height="600" id="s1">
+		<defs>
+			<filter id="f2">
+				<feGaussianBlur stdDeviation="2"></feGaussianBlur>
+			</filter>
+			<filter id="f3">
+				<feGaussianBlur stdDeviation="5"></feGaussianBlur>
+			</filter>
+		</defs>
+		<text font-size="70" x="100" y="100">滤镜效果</text>
+		<text font-size="70" x="100" y="200" filter="url(#f2)">滤镜效果</text>
+		<text font-size="70" x="100" y="300" filter="url(#f3)">滤镜效果</text>
+	</svg>
+</body>
+</html>

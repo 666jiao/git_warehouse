@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	 .container{
+    	position:relative;
+     }
+     #suggest{
+       position:absolute;
+       list-style:none;
+       padding:0;
+       margin:0;
+       border:1px solid #aaa;
+       top:100%;
+       left:0;
+       width:230px;
+       display:none;
+     }
+     #suggest li{
+        line-height:2em;
+     }
+     #suggest li:hover{
+       background:#eee;
+     }
+	</style>
+</head>
+<body>
+	<h1>ajax 图书搜索</h1>
+
+	<div class="container">
+		<input type="text" id="kw">
+		<ul id="suggest">
+			
+			
+		</ul>
+		
+	</div>
+
+	<script>
+		kw.onkeyup=function(){
+			var k=this.value;
+			if(!k){
+				suggest.style.display="none";
+				return;
+			}
+			var xhr=getXhr();
+			function getXhr(){
+				var xhr=null;
+				if(window.XMLHttpRequest){
+					xhr=new XMLHttpRequest();
+				}else{
+					xhr=new ActiveXObject('Microsoft.XMLHTTP');
+				}
+				return xhr;
+			}
+			xhr.onreadystatechange=function(){
+				if (xhr.readyState==4 && xhr.status==200){
+					console.log(xhr.responseText);
+					suggest.innerHTML=xhr.responseText;
+					suggest.style.display="block";
+				}
+			}
+			xhr.open('GET','search.php?kw='+k,true);
+			xhr.send(null);
+			// xhr.open('POST','search.php',true);
+			// xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			// xhr.send(`kw=${k}`);
+		}
+	</script>
+</body>
+</html>

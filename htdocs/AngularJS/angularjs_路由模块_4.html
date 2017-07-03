@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-route.js"></script>
+</head>
+<body>
+	<!-- <div ng-controller="myCtrl"></div> -->
+
+	<ng-view></ng-view>
+	<script>
+	    var app=angular.module("myApp",['ng','ngRoute']);
+	    // 配置路由词典
+	    app.config(function($routeProvider){
+	    	$routeProvider
+	    	.when('/myDetail/:index',{
+    			controller:'detailCtrl',
+    			templateUrl:'tpl/detail.html'
+	    	}).when('/myList',{
+	    		controller:'listCtrl',
+	    		templateUrl:'tpl/list.html'
+	    	}).otherwise({redirectTo:'/myList'})
+	    })
+
+	    app.controller('listCtrl',['$scope','$location',function($scope,$location){
+	    	$scope.myList=[10,20,30,40,52,86,78];
+	    	$scope.jump=function(index){
+	    		$location.path('/myDetail/'+index)
+	    	}
+	    }])
+
+	    app.controller('detailCtrl',['$scope','$routeParams','$location',function($scope,$routeParams,$location){
+	    	$scope.myList=[10,20,30,40,52,86,78];
+	    	console.log($routeParams)
+	    	$scope.recAgre=$routeParams.index
+	    	$scope.jump=function(index){
+	    		$location.path(index)
+	    	}
+	    }])
+	</script>
+</body>
+</html>

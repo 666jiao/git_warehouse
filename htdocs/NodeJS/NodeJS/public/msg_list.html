@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1" width="100%">
+     <thead>
+      <tr>
+        <th>编号</th>
+        <th>用户名</th>
+        <th>内容</th>
+        <th>时间</th>
+        <th>删除</th>
+        <th>更新时间</th>
+      </tr>
+      </thead>
+      <tbody id="tb1"></tbody>
+    </table>
+
+	<script src="js/jquery-1.11.3.js"></script>
+    <script>
+    	$.ajax({
+	        type:"GET",
+	        url:"/msg",
+	        success:function(data){
+	          for(var i=0,s='';i<data.length;i++){
+	            s+=`<tr>
+	                  <td>${data[i].mid}</td>
+	                  <td>${data[i].uname}</td>
+	                  <td>${data[i].content}</td>
+	                  <td>${data[i].pubtime}</td>
+	                  <td><a href="${data[i].mid}" class="btn-del">删除</a></td>
+	                  <td><a href="${data[i].mid}" class="btn-dat">更新时间</a></td>
+	                </tr>`;
+	          }
+	          $("#tb1").html(s);
+	        }
+	    })
+
+    	$('#tb1').on('click','a.btn-dat',function(e){
+    		e.preventDefault();
+    		var t=$(this).attr('href');
+    		var d=new Date();
+    		var m=Math.random();
+    		console.log(d,m);
+    		var self=this;
+    		$.ajax({
+				url:"/update/"+t,
+				success:function(data){
+					if(data.code>0){
+						alert(data.msg);
+					}
+				}
+			})
+    	})
+
+    	$('#tb1').on('click','a.btn-del',function(e){
+    			e.preventDefault();
+    			var t=$(this).attr("href");
+    			var self=this;
+
+    			// get请求方式
+    			// $.ajax({
+    			// 	url:"/delete?t="+t,
+    			// 	success:function(data){
+    			// 		if(data.code>0){
+    			// 			var rs=window.confirm('删除吗？');
+    			// 			if(rs){
+    			// 				$(self).parent().parent().remove();
+    			// 			}
+    			// 		}
+    			// 	}
+    			// })
+
+    			// post请求方式
+    			$.ajax({
+    				type:"POST",
+    				url:"/delete",
+    				data:{t:t},
+    				success:function(data){
+    					console.log(data.state);
+    					if(data.code>0){
+    						var rs=window.confirm('删除吗？');
+    						if(rs){
+    							$(self).parent().parent().remove();
+    						}
+    					}
+    				}
+    			})
+    	})
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="jquery-1.7.2.js"></script>
+	<script type="text/javascript"> 
+	//注册页面加载完成回调函数（匿名） 
+	// $(document).ready(function(){ 
+	// 	//使用getJSON方法调用跨域脚本；注册匿名回调函数 
+	// 	$.getJSON("getJSON.php?callback=?", function(data){
+	// 		$(document.body).append("<hr/>getJSON ok!"+data.reqUrl);
+	// 		console.log(data);
+	// 	}); 
+	// }); 
+
+
+
+	$(document).ready(function(){
+		$.ajax({
+			url:"getJSON.php", 
+			dataType:'jsonp', 
+			success:function(data,s){
+				$(document.body).append("<hr/>ajax ok!" + data.reqUrl);
+				console.log(data,s);
+			} 
+		}); 
+	}); 
+
+
+	// function addScriptTag(src){
+ //      var script = document.createElement('script');
+ //         script.setAttribute("type","text/javascript");
+ //         script.src = src;
+ //         document.body.appendChild(script);
+ //    }
+     
+ //     window.onload = function(){
+ //         addScriptTag("jquery-1.7.2.js");
+ //     }
+	</script>
+</body>
+</html>

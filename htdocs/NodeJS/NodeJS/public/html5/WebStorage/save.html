@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<h2>单词录入</h2><hr>
+<form action="">
+	<input type="text" id="inen"><br>
+	<input type="text" id="incn"><br>
+	<input type="button" id="btn1" value="保存生词">
+</form>
+<hr>
+<a href="test.html">开始测试</a>
+<script>
+	btn1.onclick=function(){
+		var e=inen.value;
+		var c=incn.value;
+		localStorage[e]=c;
+		alert("保存完成")
+		inen.value='';
+		incn.value='';
+	}
+
+
+
+	// var age=211;
+	// localStorage.setItem('age',age);
+	
+	// ind.onclick=function(){
+	// 	var list=ins.value;
+	// 	localStorage['list']=list;
+	// 	console.log(localStorage['list'])
+	// 	div1.innerHTML=localStorage['list'];
+	// }
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	请输入数值：
+	<input type="text" value="" id="inputNum">
+	<button id="btn1">开始计算</button>
+	<div id="result">计算中...</div>
+	<script>
+		btn1.onclick=function(){
+			var n=inputNum.value;
+			var s=new Worker("4.js");
+			s.postMessage(n);
+			s.onmessage=function(e){
+				result.innerHTML=e.data;
+			}
+		}
+
+
+		// if(typeof(Worker)!=="undefined"){
+		// 	var w5=new Worker("3.js");
+		// 	w5.onMessage=function(ev){
+
+		// 	}
+		// 	console.log(true);
+		// }else console.log(false);
+	</script>
+</body>
+</html>

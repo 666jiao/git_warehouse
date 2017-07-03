@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>H5的新特性--SVG绘图矩形</title>
+	<style>
+		 /*body{
+            width:100%;
+            overflow:hidden;
+            margin:0;
+            background: hsla(120,80%,90%,0.5);
+        }*/
+		body{
+			text-align: center;
+		}
+		svg{
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<h1>H5的新特性--SVG绘图矩形</h1>
+	<!-- round/butt/square -->
+	<svg width="800" height="600" id="s1">
+		<g stroke-width="50" stroke="#0f0" stroke-linecap="round" id="g">
+			<line x1="450" y1="250" x2="110" y2="250"></line>
+			<line x1="50" y1="250" x2="50" y2="250"></line>
+			<line x1="450" y1="350" x2="110" y2="350"></line>
+			<line x1="50" y1="350" x2="50" y2="350"></line>
+			<line x1="450" y1="450" x2="110" y2="450"></line>
+			<line x1="50" y1="450" x2="50" y2="450"></line>
+		</g>
+	</svg>
+	
+	<script>
+		g.setAttribute("stroke",rc());
+
+		// function rn(min,max){
+		// 	var n=Math.floor(Math.random()*(max-min)+min);
+		// 	return n;
+		// }
+
+		// function rc(min,max){
+		//   var r=rn(min,max);
+		//   var g=rn(min,max);
+		//   var b=rn(min,max);
+		//   return `rgb(${r},${g},${b})`;
+		// }
+
+		function rc(){
+		  var r=Math.floor(Math.random()*256);
+		  var g=Math.floor(Math.random()*256);
+		  var b=Math.floor(Math.random()*256);
+		  var a=Math.random();
+		  return `rgba(${r},${g},${b},${a})`;
+		}
+	</script>
+
+</body>
+</html>

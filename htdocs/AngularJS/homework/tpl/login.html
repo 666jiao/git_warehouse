@@ -1,0 +1,10 @@
+<h1>用户登录页</h1>
+
+<form action="" name="myForm">
+	<input type="text" required ng-model="con" name="myUserName">
+	<span ng-show="myForm.myUserName.$dirty && myForm.myUserName.$invalid">请输入用户名</span><hr>
+	<input type="password" required ng-model="cond" name="myPwd">
+	<span ng-show="myForm.myPwd.$dirty && myForm.myPwd.$invalid">请输入密码</span><hr>
+	<input type="button" value="登录" ng-click="jump('/main/'+con)" ng-disabled="myForm.$invalid">
+	<input type="button" value="注册" ng-click="jump('/register')">
+</form>

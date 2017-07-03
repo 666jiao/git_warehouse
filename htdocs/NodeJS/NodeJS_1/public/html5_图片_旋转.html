@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+      div{
+        text-align: center;
+      }
+	    canvas{
+	      background: rgba(221, 221, 221, 0.53);
+	    }
+	</style>
+</head>
+<body>
+<div>
+  <canvas width="800" height="600" id="c2">您的浏览器不支持canvas绘图</canvas>
+</div>
+<button id="btn">开始抽奖</button>
+
+<script>
+//1:获取画笔
+var ctx=c2.getContext("2d");
+var w=c2.width;
+var h=c2.height;
+// w=c2.width=window.innerWidth,                                
+// h=c2.height=window.innerHeight;
+
+var progress=0;
+var p4=new Image();
+p4.src="img/pin.png";
+p4.onload=function(){
+  progress+=50;
+  if(progress==100){
+    startDraw();
+  }
+}
+var p3=new Image();
+p3.src="img/pan.png";
+p3.onload=function(){
+  progress+=50;
+  if(progress==100){
+    startDraw();
+  }
+};
+  
+
+function startDraw(){
+  var deg=0,k=5;
+  ctx.translate(w/2,h/2);
+  ctx.drawImage(p3,-499/2,-499/2);
+  ctx.drawImage(p4,-22,-97);
+  var s=null,a=null;
+  btn.onclick=function(){
+    var d=5000*Math.random();
+    if(d<1000) d+=4000;
+    else if(d<2000) d+=3000;
+    else if(d<3000) d+=2000;
+    else if(d<4000) d+=1000;
+    console.log(d);
+    this.disabled=true;
+    s=setInterval(function(){
+      ctx.clearRect(0,0,w,h);
+      ctx.save();
+      ctx.rotate(deg*Math.PI/180);
+      ctx.drawImage(p3,-499/2,-499/2);
+      ctx.restore();
+      deg+=k;
+      ctx.drawImage(p4,-22,-97);
+      if(deg>d){
+        console.log(deg)
+          k-=0.01;
+          if(k<0){
+            deg=0;k=5;
+            clearInterval(s);
+            btn.disabled=false;
+            console.log(deg,k)
+          }
+      }
+    },10);
+  }
+}
+
+
+function rc(){
+  var r=Math.floor(Math.random()*256);
+  var g=Math.floor(Math.random()*256);
+  var b=Math.floor(Math.random()*256);
+  return `rgb(${r},${g},${b})`;
+}
+</script>
+</body>
+</html>

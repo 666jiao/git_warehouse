@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<button ng-click="whetherLogin()">用户中心</button>
+		<h1 ng-show="loginStatus">已登录</h1>
+
+
+		<button ng-click="login()">登录</button>
+
+		<button ng-click="handleClick()">click Me</button>
+
+		<button ng-click="tokensClick()">click Me</button>
+	</div>
+
+	<script>
+	    var app=angular.module("myapp",['ng']);
+
+	    app.service('$Log',function(){
+	    	this.isProduction=false;
+	    	this.debug=function(msg){
+	    		if(!this.isProduction){
+	    			 console.log(msg);
+	    		}
+	    	}
+	    })
+
+	    app.factory('$userLogin',function(){
+	    	return {
+	    		checkUserLogin:function(){
+	    			return Math.random()>0.5
+	    		}
+	    	}
+	    })
+
+ 		app.constant('$Config',{
+	    	baseUrl:'10.20.30.1'
+	    })
+
+ 		app.value('$Tokens',{
+ 			userAccessToken:'FEWFEWFEWFEDFDEFC'
+ 		})
+
+	    app.controller("contro",function($scope,$interval,$http,$userLogin,$Log,$Config,$Tokens){
+
+	    	$scope.tokensClick=function(){
+	    		console.log("当前要请求的秘钥："+$Tokens.userAccessToken);
+	    	}
+
+	    	$scope.handleClick=function(){
+	    		console.log("当前要请求的地址："+$Config.baseUrl);
+	    	}
+
+	    	$scope.login=function(){
+	    		$Log.debug('正在登录');
+	    		$Log.debug('登录完成');
+	    		$Log.debug('已经跳转到主页面');
+	    	}
+
+
+	    	$scope.whetherLogin=function(){
+	    		$scope.loginStatus=$userLogin.checkUserLogin();
+	    	}
+
+
+
+	    	$scope.getData=function(){
+
+	    		$http({
+	    			method:'get',
+	    			url:'data/test.json'
+	    		}).success(function(data){
+	    			// console.log(data)
+	    			$scope.dishList=data;
+	    			angular.forEach(data,function(value,key){
+	    				console.log(value.age,key)
+	    			})
+	    		}).error(function(){
+	    			console.log(arguments)
+	    		})
+	    	}
+	    });
+
+	</script>
+</body>
+</html>

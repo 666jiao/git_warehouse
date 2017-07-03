@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="#">
+		用户名:<input type="text" id="uname"/><hr>
+		  密码:<input type="password" id="upwd"/><hr>
+			   <input type="button" value="登录" id="btn"/>
+	</form>
+
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+		$('#btn').click(function(){
+			$.ajax({
+				url:'login.php?uname='+uname.value+'&upwd='+upwd.value,
+				success:function(data){
+					if(data=='login-succ') alert('登录成功，欢迎回来！');
+					else if(data=='login-err') alert('用户名或密码错误！');
+				}
+			})
+		})
+	</script>
+</body>
+</html>

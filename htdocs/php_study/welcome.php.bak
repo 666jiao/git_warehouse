@@ -1,0 +1,6 @@
+
+
+	xiao <?php echo $_POST["name"]; ?>hua<br>
+	tong <?php echo $_POST["age"]; ?> xue
+
+<a href="http://127.0.0.1/php_study/lianxi1.php">返回</a>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<form action="#">
+		名称<input type="text" id="cname"/><hr>
+		价格<input type="text" id="price"/><hr>
+		图片<input type="text" id="pic"/><hr>
+		类别<input type="text" id="cid"/><hr>
+			<input type="button" value="添加" id="btn" />
+	</form>
+
+	<script src="jquery-1.7.2.js"></script>
+	<script>
+
+	$("#btn").click(function(){
+		var na=cname.value,pr=price.value,pi=pic.value,ci=cid.value;
+		console.log(na,pr,pi,ci);
+		$.ajax({
+			type:"POST",
+			url:"add_cake.php",
+			data:{name:na,price:pr,pic:pi,cid:ci},
+			success:function(data){
+				if(data.code>0){
+					alert("添加成功");
+				}else{
+					alert("添加失败，原因："+data.msg);
+				}
+			}
+		})
+	})
+	
+
+
+
+
+	function addScriptTag(src){
+      var script = document.createElement('script');
+         script.setAttribute("type","text/javascript");
+         script.src = src;
+         document.body.appendChild(script);
+    }
+     
+     window.onload = function(){
+         addScriptTag("http://localhost:20002/test.js");
+     }
+	</script>
+</body>
+</html>

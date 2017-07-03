@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			text-align: center;
+		}
+		svg{
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<h1>H5的新特性--SVG绘图矩形</h1>
+	<svg width="1200" height="600" id="s1"></svg>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script>
+		// var data=[
+		// 	{"lab":"部门1","value":300},
+		// 	{"lab":"部门2","value":310},
+		// 	{"lab":"部门3","value":320},
+		// 	{"lab":"部门4","value":330},
+		// 	{"lab":"部门5","value":340}
+		// ];
+
+		$.ajax({
+			url:"/start",
+			success:function(data){
+				var svgW=s1.getAttribute("width");
+				var svgH=s1.getAttribute("height");
+				console.log(svgW,svgH);
+				for(var i=0;i<data.length;i++){
+					console.log(data[i].value)
+					var dept=data[i];
+					var rect=document.createElementNS("http://www.w3.org/2000/svg","rect");
+					rect.setAttribute("width",svgW/(2*data.length+1));
+					rect.setAttribute("height",svgH*(dept.value)/10);
+					rect.setAttribute("x",(svgW/(2*data.length+1))*(2*i+1));
+					rect.setAttribute("y",svgH-(svgH*(dept.value)/10));
+					rect.setAttribute("fill",rc(0,255));
+					s1.appendChild(rect);
+				}
+			}
+		})
+
+		function rn(min,max){
+			var n=Math.floor(Math.random()*(max-min)+min);
+			return n;
+		}
+
+		function rc(min,max){
+		  var r=rn(min,max);
+		  var g=rn(min,max);
+		  var b=rn(min,max);
+		  return `rgb(${r},${g},${b})`;
+		}
+	</script>
+</body>
+</html>

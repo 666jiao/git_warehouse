@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>用户注册</h1>
+	<form action="#">
+		用户名:<input type="text" id="uname"/>
+		<span id="unameTip" style="color:red"></span><hr>
+		  密码:<input type="password" id="upwd"/><hr>
+			   <input type="button" value="添加" id="btn"/>
+	</form>
+
+	<script>
+		uname.onblur=function(){
+			var u=uname.value;
+			var p=upwd.value;
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+				unameTip.innerHTML=xhr.responseText;
+			}
+			xhr.open('GET','existsuname.php?uname='+u+'&upwd='+p,true);
+			xhr.send(null);
+		}
+		
+	</script>
+</body>
+</html>

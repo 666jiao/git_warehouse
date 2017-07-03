@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-route.js"></script>
+	<script src="js/angular-animate.js"></script>
+</head>
+<body ng-controller="bodyCtrl">
+	<!-- <div ng-controller="myCtrl"></div> -->
+
+	<ng-view></ng-view>
+	<script>
+	    var app=angular.module("myApp",['ng','ngRoute']);
+	    // 配置路由词典
+	    app.config(function($routeProvider){
+	    	$routeProvider
+	    	.when('/check/:index',
+    		{
+    			controller:'checkCtrl',
+    			templateUrl:'tpl/check.html'
+	    	}).when('/pay/:id',
+	    	{
+	    		controller:'payCtrl',
+	    		templateUrl:'tpl/pay.html'
+	    	}).when('/send',
+	    	{
+	    		templateUrl:'tpl/send.html'
+	    	}).otherwise({redirectTo:'/check'})
+	    })
+
+	     app.controller('bodyCtrl',['$scope','$location','$routeParams',function($scope,$location,$routeParams){
+	    	$scope.recAgre=$routeParams.index
+	    	$scope.jump=function(routeUrl){
+	    		$location.path(routeUrl)
+	    	}
+	    }])
+
+	    app.controller('checkCtrl',['$scope','$location','$routeParams',function($scope,$location,$routeParams){
+	    	$scope.recAgre=$routeParams.index
+	    	$scope.myList=[10,20,30,40];
+	    	$scope.jump=function(index){
+	    		$location.path('/myDetail/'+index)
+	    	}
+	    }])
+
+	    app.controller('payCtrl',['$scope','$routeParams',function($scope,$routeParams){
+	    	console.log($routeParams)
+	    	$scope.recAgre=$routeParams.id
+	    }])
+	</script>
+</body>
+</html>

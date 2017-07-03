@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>H5的新特性--SVG绘图矩形</title>
+	<style>
+		 /*body{
+            width:100%;
+            overflow:hidden;
+            margin:0;
+            background: hsla(120,80%,90%,0.5);
+        }*/
+		body{
+			text-align: center;
+		}
+		svg{
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<h1>H5的新特性--SVG绘图矩形</h1>
+	<svg width="800" height="600" id="s1">
+		<circle r="100" cx="100" cy="100" id="c1"></circle>
+		<circle r="100" cx="700" cy="100" id="c2"></circle>
+		<circle r="100" cx="100" cy="500" id="c3"></circle>
+		<circle r="100" cx="700" cy="500" id="c4"></circle>
+		<circle r="200" cx="400" cy="300" id="c5"></circle>	
+	</svg>
+	
+	<script>
+		setInterval(function(){
+			c1.setAttribute("fill",rc());
+			c2.setAttribute("fill",rc());
+			c3.setAttribute("fill",rc());
+			c4.setAttribute("fill",rc());
+			c5.setAttribute("fill",rc());
+			// c1.setAttribute("stroke",rc());
+			// c2.setAttribute("stroke",rc());
+			// c3.setAttribute("stroke",rc());
+			// c4.setAttribute("stroke",rc());
+			// c5.setAttribute("stroke",rc());
+			s1.style.background=rc();
+		},500)
+		
+
+		function rc(){
+		  var r=Math.floor(Math.random()*256);
+		  var g=Math.floor(Math.random()*256);
+		  var b=Math.floor(Math.random()*256);
+		  var a=Math.random();
+		  return `rgba(${r},${g},${b},${a})`;
+		}
+	</script>
+
+</body>
+</html>

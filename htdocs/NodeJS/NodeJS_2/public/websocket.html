@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<h1>ws客户端应用</h1>
+<button id="btn1">连接到ws服务器</button>
+<button id="btn2">向服务器发送消息</button>
+<button id="btn3">断开连接</button>
+<script>
+var socket=new WebSocket("ws://127.0.0.1:9001");
+btn1.onclick=function(){
+	socket.onmessage=function(msg){
+		console.log("接受服务器的一个消息"+msg.data);
+	}
+}
+
+btn2.onclick=function(){
+	socket.send("I am Client : "+new Date().getTime());
+}
+
+btn3.onclick=function(){
+	socket.close();
+}
+
+</script>
+</body>
+</html>

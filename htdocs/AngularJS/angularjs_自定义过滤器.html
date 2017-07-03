@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.js"></script>
+</head>
+<body>
+	<div ng-controller="contro">
+		<p>{{price | myFilter:'￥'}}</p>
+		<p>{{nowDate | date:'yyyy-MM-dd-EEEE-HH:mm:ss' | myFilter:'日期时间：'}}</p>
+		<p>{{nowDate | date:'mediumTime' | myFilter:'时间：'}}</p>
+		<p>{{nowDate | date:'medium' | myFilter:'日期时间：'}}</p>
+	</div>
+
+	
+	<script>
+	    var app=angular.module("myapp",['ng']);
+
+	    app.filter('myFilter',function(){
+	    	return function(inputValue,arg1){
+	    		return arg1+inputValue
+	    	}
+	    })
+
+	    app.controller("contro",function($scope){
+	       	$scope.price=1234;
+	       	$scope.nowDate=new Date();
+
+	       	$scope.stuList=[
+	       		{sex:'男',score:89,age:21,name:'zhangsan'},
+	       		{sex:'男',score:78,age:19,name:'zhangsan1'},
+	       		{sex:'男',score:96,age:20,name:'zhangsan2'},
+	       		{sex:'男',score:80,age:21,name:'zhangsan4'},
+	       		{sex:'男',score:72,age:19,name:'zhangsan5'},
+	       		{sex:'男',score:91,age:20,name:'zhangsan6'},
+	       	];
+	    });
+
+	</script>
+</body>
+</html>

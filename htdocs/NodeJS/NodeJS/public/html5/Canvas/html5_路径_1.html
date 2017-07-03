@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		canvas{
+			background: black;
+		}
+	</style>
+</head>
+<body>
+	<h1>h5新特性--canvas绘图</h1>
+  
+	<canvas width="500" height="400" id="c1">您的浏览器不支持canvas绘图</canvas>
+
+<script>
+var ctx=c1.getContext("2d");  
+
+ctx.beginPath();
+ctx.lineWidth=1;
+ctx.strokeStyle=rc();
+ctx.moveTo(50,350);
+ctx.lineTo(450,350);
+ctx.lineTo(450-10,350-10);
+ctx.lineTo(450,350);
+ctx.lineTo(450-10,350+10);
+ctx.stroke();
+
+
+ctx.beginPath();
+ctx.strokeStyle=rc();
+ctx.moveTo(50,350);
+ctx.lineTo(50,50);
+ctx.lineTo(50-10,50+10);
+ctx.lineTo(50,50);
+ctx.lineTo(50+10,50+10);
+ctx.stroke();
+
+// //实心三角形
+// ctx.beginPath();
+// ctx.moveTo(350,50);
+// ctx.lineTo(300,200);
+// ctx.lineTo(400,300);
+// ctx.closePath();
+// ctx.fill();
+
+
+function rc(){
+  var r=Math.floor(Math.random()*256);
+  var g=Math.floor(Math.random()*256);
+  var b=Math.floor(Math.random()*256);
+  return `rgb(${r},${g},${b})`;
+}
+</script>
+</body>
+</html>
