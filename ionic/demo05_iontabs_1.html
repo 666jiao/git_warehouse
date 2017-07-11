@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="css/ionic.css"/>
+    <script src="js/ionic.bundle.js"></script>
+</head>
+<body>
+
+<ion-side-menus ng-controller="myCtrl">
+
+    <ion-side-menu-content>
+        <ion-header-bar class="bar-calm">
+            <h1 class="title">header</h1>
+        </ion-header-bar>
+	    <ion-tabs class="tabs-icon-top tabs-calm">
+		    <ion-tab title="主页" icon-on="ion-ios-home" icon-off="ion-ios-home-outline">
+		        <ion-view>
+		            <ion-content>
+                        <ion-refresher on-refresh="doRefresh()"></ion-refresher>
+		                <ul class="list list-inset">
+					        <li class="item" ng-repeat="tmp in myList track by $index">{{tmp}}</li>
+					    </ul>
+                        <ion-infinite-scroll immediate-check="false" on-infinite="loadMore()"></ion-infinite-scroll>
+		            </ion-content>
+		        </ion-view>
+		    </ion-tab>
+		    <ion-tab title="个人中心" icon="ion-person">
+		        <ion-view>
+		            <ion-content>
+		                <button class="button button-royal button-block" ng-click="showActionSheet()">分享</button>
+
+		                <button ng-click="loadData()" class="button button-calm button-block">加载数据</button>
+					    <ul class="list list-inset">
+					        <li class="item" ng-repeat="myItem in myLists track by $index">{{myItem}}</li>
+					    </ul>
+
+					    <button class="button button-dark button-block" ng-click="showCustomModal()">显示自定义模态窗</button>
+		            </ion-content>
+		        </ion-view>
+		    </ion-tab>
+		    <ion-tab title="设置" icon="ion-gear-a">
+		        <ion-view>
+		            <ion-content>
+		                <ui-view></ui-view>
+		            </ion-content>
+		        </ion-view>
+		    </ion-tab>
+		</ion-tabs>
+    </ion-side-menu-content>
+
+	<!-- 右侧边栏 -->
+    <ion-side-menu side="right">
+        <ul class="list list-inset">
+            <li class="item">设置</li>
+            <li class="item">退出账号</li>
+            <li class="item">关于</li>
+        </ul>
+    </ion-side-menu>
+
+	<!-- 左侧边栏 -->
+    <ion-side-menu side="left">
+        <ul class="list list-inset">
+            <li class="item">通讯录</li>
+            <li class="item">大众点评</li>
+            <li class="item">滴滴打车</li>
+        </ul>
+    </ion-side-menu>
+
+</ion-side-menus>
+
+
+
+<script type="text/ng-template" id="test.html">
+    <ion-modal-view>
+        <button ng-click="hideCustomModal()" class="button button-assertive button-block">关闭模态窗</button>
+        <ul class="list list-inset">
+            <li class="item">小明</li>
+            <li class="item">小红</li>
+            <li class="item">小小</li>
+        </ul>
+    </ion-modal-view>
+</script>
+
+<script>
+    var app = angular.module('myApp',['ionic']);
+
+    app.config(function($ionicConfigProvider,$stateProvider,$urlRouterProvider){
+        $ionicConfigProvider.tabs.position('bottom');
+
+        $stateProvider.state('myLogin',{
+            url:'/kflLogin',
+            templateUrl:'tpl/login.html'
+        }).state('myRegister',{
+            url:'/kflRegister',
+            templateUrl:'tpl/register.html'
+        });
+        $urlRouterProvider.otherwise('/kflLogin');
+    });
+
+    app.controller('myCtrl',['$scope','$ionicActionSheet','$ionicLoading','$timeout','$ionicModal','$state',function($scope,$ionicActionSheet,$ionicLoading,$timeout,$ionicModal,$state){
+        $scope.jump=function(s){
+            $state.go(s);
+        };
+
+//        下拉刷新，上拉加载
+        $scope.myList=[1,2,3,4,5,6];
+        $scope.doRefresh=function(){
+            $timeout(function(){
+                console.log("准备刷新数据");
+                $scope.myList.unshift(Math.floor(Math.random()*100));
+                $scope.$broadcast('scroll.refreshComplete');
+            },2000);
+        };
+        $scope.loadMore=function(){
+            $timeout(function(){
+                console.log("准备加载数据");
+                $scope.myList.push(Math.floor(Math.random()*100));
+                $scope.$broadcast('scroll.infiniteScrollComplete');
+            },2000);
+        }
+//        ===========================================================
+
+    	// 分享到朋友圈
+    	$scope.showActionSheet=function(){
+            var hideSheet=$ionicActionSheet.show({
+                buttons:[{text:'分享到朋友圈'},{text:'分享给好友'}],
+                buttonClicked:function(index){
+                    console.log(index+"好的");
+                    return true;
+                },
+                titleText:'分享',
+                cancelText:'取消分享',
+                cancel:function(){
+                    console.log("取消分享");
+                },
+                destructiveText:'删除',
+                destructiveButtonClicked:function(){
+                    console.log("删除");
+                    return true;
+                }
+            });
+        }
+        // ===================================================================
+         
+        // 加载数据
+        $scope.myLists=[];
+        $scope.loadData=function(){
+            // $scope.myLists.push(Math.floor(Math.random()*100));
+            $ionicLoading.show({
+                template:"loading...",
+                // duration:2000
+            });
+
+           $timeout(function(){
+               $scope.myLists.push(Math.floor(Math.random()*100));
+               $ionicLoading.hide();
+           },2000)
+        }
+        // ====================================================================
+
+        // 自定义模态框
+        $ionicModal.fromTemplateUrl('test.html',{scope:$scope}).then(function(result){
+            $scope.customModal=result;
+        });
+
+        $scope.showCustomModal=function(){
+            $scope.customModal.show();
+        };
+
+        $scope.hideCustomModal=function(){
+            console.log(100);
+            $scope.customModal.hide();
+        }
+        // ====================================================
+    }])
+</script>
+</body>
+</html>

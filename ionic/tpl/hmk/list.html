@@ -1,0 +1,9 @@
+
+
+<ion-refresher on-refresh="doRefresh()"></ion-refresher>
+<ul class="list list-inset">
+    <li class="item" ng-repeat="tmp in myList track by $index">
+		<a href="#/detail">{{tmp}}</a>
+    </li>
+</ul>
+<ion-infinite-scroll immediate-check="false" on-infinite="loadMore()"></ion-infinite-scroll>

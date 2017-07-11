@@ -1,0 +1,28 @@
+<div class="list list-inset">
+    <a href="#/alllian" class="button button-assertive button-block">alllian</a>
+</div>
+
+<div>
+    <div class="row" ng-if="$index%4==0" ng-repeat="dish in mopr">
+        <div class="col">
+            <img class="full-image" ng-src="img/{{dish.hua}}" alt=""/>
+            <h4>{{dish.pa}}</h4>
+            <p>{{dish.price}}</p>
+        </div>
+        <div class="col">
+            <img class="full-image" ng-src="img/{{mopr[$index+1].hua}}" alt=""/>
+            <h4>{{mopr[$index+1].pa}}</h4>
+            <p>{{mopr[$index+1].price}}</p>
+        </div>
+        <div class="col">
+            <img class="full-image" ng-src="img/{{mopr[$index+2].hua}}" alt=""/>
+            <h4>{{mopr[$index+2].pa}}</h4>
+            <p>{{mopr[$index+2].price}}</p>
+        </div>
+        <div class="col">
+            <img class="full-image" ng-src="img/{{mopr[$index+3].hua}}" alt=""/>
+            <h4>{{mopr[$index+3].pa}}</h4>
+            <p>{{mopr[$index+3].price}}</p>
+        </div>
+    </div>
+</div>
